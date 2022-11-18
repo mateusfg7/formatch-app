@@ -2,5 +2,29 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "commitBodyTable": true,
+  "branchPrefix": "deps/",
+  "labels": ["dependencies"],
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "addLabels": ["d:major"],
+      "stabilityDays": 3
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "addLabels": ["d:minor"]
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "addLabels": ["d:patch"]
+    },
+    {
+      "matchUpdateTypes": ["pin"],
+      "addLabels": ["d:pin"],
+      "automerge": true
+    }
   ]
 }
