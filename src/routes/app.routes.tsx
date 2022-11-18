@@ -23,7 +23,7 @@ export function AppRoutes() {
           height: sizes[22],
           borderTopWidth: 0,
           elevation: 100,
-          backgroundColor: colors.background[500],
+          backgroundColor: colors.background[200],
         },
       }}
     >
