@@ -22,8 +22,10 @@ export function AppRoutes() {
           position: 'absolute',
           height: sizes[22],
           borderTopWidth: 0,
-          elevation: 100,
+          elevation: 50,
           backgroundColor: colors.background[200],
+          borderTopLeftRadius: sizes[8],
+          borderTopRightRadius: sizes[8],
         },
       }}
     >
