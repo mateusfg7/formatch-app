@@ -1,9 +1,11 @@
-import { Center, Text } from 'native-base'
+import { Text, VStack } from 'native-base'
+import { Header } from '../components/Header'
 
 export function Feed() {
   return (
-    <Center flex={1} backgroundColor='background.500'>
+    <VStack flex={1} backgroundColor='background.500'>
+      <Header />
       <Text>Feed</Text>
-    </Center>
+    </VStack>
   )
 }
