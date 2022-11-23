@@ -28,18 +28,21 @@ export function SignIn() {
         borderRadius='2xl'
         marginBottom='5'
         leftIcon={<GoogleLogo weight='bold' color='#fff' size={35} />}
-        _text={{
-          fontSize: 'xl',
-          fontWeight: 'bold',
-        }}
         _pressed={{
           backgroundColor: '#DD4D41',
         }}
         onPress={() => handleLogin()}
       >
-        ENTRAR COM O GOOGLE
+        <Text color='white' fontFamily='bold' fontSize='xl'>
+          ENTRAR COM O GOOGLE
+        </Text>
       </Button>
-      <Text color='complement.300' w={335} textAlign='center'>
+      <Text
+        color='complement.300'
+        w={335}
+        textAlign='center'
+        fontFamily='regular'
+      >
         Não utilizamos nenhuma informação além do{'\n'}
         seu e-mail e foto para criação de sua conta.
       </Text>
