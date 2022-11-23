@@ -15,7 +15,7 @@
     "@react-navigation/native": "^6.0.13",
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
-    "expo": "~47.0.3",
+    "expo": "^47.0.7",
     "expo-font": "~11.0.1",
     "expo-status-bar": "~1.4.2",
     "native-base": "^3.4.21",
