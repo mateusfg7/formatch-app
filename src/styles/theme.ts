@@ -39,6 +39,10 @@ export const THEME = extendTheme({
       800: '#020203',
     },
   },
+  fonts: {
+    bold: 'Roboto_700Bold',
+    regular: 'Roboto_400Regular',
+  },
   sizes: {
     22: 87,
   },
