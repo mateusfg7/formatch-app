@@ -1,6 +1,6 @@
 <div align="center">
 
-# <img src=".github/docs/logotipo.svg" width="400">
+# <img src=".github/docs/logotipo.svg" width="600">
 
 Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor.
 </div>
