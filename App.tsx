@@ -10,6 +10,12 @@ import { Loading } from './src/components/Loading'
 
 import { THEME } from './src/styles/theme'
 
+const nativeBaseConfig = {
+  dependencies: {
+    'linear-gradient': require('expo-linear-gradient').LinearGradient,
+  },
+}
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -17,7 +23,7 @@ export default function App() {
   })
 
   return (
-    <NativeBaseProvider theme={THEME}>
+    <NativeBaseProvider theme={THEME} config={nativeBaseConfig}>
       <StatusBar
         barStyle='dark-content'
         backgroundColor='transparent'
