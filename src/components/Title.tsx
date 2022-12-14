@@ -6,7 +6,7 @@ interface Props {
 
 export function Title({ text }: Props) {
   return (
-    <VStack w='full' h='16' px='5'>
+    <VStack px='5' pb='6'>
       <Text color='complement.500' fontFamily='bold' fontSize='2xl'>
         {text}
       </Text>
