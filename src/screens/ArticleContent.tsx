@@ -17,14 +17,14 @@ import { Header } from '../components/Header'
 import { Title } from '../components/Title'
 
 import articles from '../assets/articles.json'
+import { api } from '../services/api'
 
 interface Props {
   route: RouteProp<{ params: { slug: string } }, 'params'>
 }
 
 export function ArticleContent({ route }: Props) {
-  const [articleText, setArticleText] = useState('Carregando artigo...')
-  const [errorLog, setErrorLog] = useState('')
+  const [articleData, setArticleData] = useState<IArticle>()
   const [articleRequestStatus, setArticleRequestStatus] = useState<
     'LOADING' | 'ERROR' | 'LOADED'
   >('LOADING')
@@ -42,17 +42,15 @@ export function ArticleContent({ route }: Props) {
   useEffect(() => {
     async function makeRequest() {
       setArticleRequestStatus('LOADING')
-      await fetch(`http://192.168.1.4:3333/art/${slug}`)
-        .then((res) => res.json())
-        .then((res) => {
-          setArticleText(res.content)
-          setArticleRequestStatus('LOADED')
-        })
-        .catch((err) => {
-          setArticleRequestStatus('ERROR')
-          setErrorLog(String(err))
-          console.log(err)
-        })
+
+      const request = await api.get<IArticle>(`/article/${slug}`)
+
+      if (request.status != 200 || !request.data)
+        setArticleRequestStatus('ERROR')
+      else {
+        setArticleData(request.data)
+        setArticleRequestStatus('LOADED')
+      }
     }
     makeRequest()
   }, [slug])
@@ -61,12 +59,16 @@ export function ArticleContent({ route }: Props) {
       <Header
         showBackButton
         navigateToScreen='feed'
-        title={scrollPosition >= 63 ? articleBySlug.title : ''}
+        title={
+          scrollPosition >= 63 && articleRequestStatus === 'LOADED'
+            ? articleData.title
+            : ''
+        }
       />
       <ScrollView onScroll={handleScroll}>
         {scrollPosition >= 63 && <Title text='' />}
         {scrollPosition < 63 && articleRequestStatus === 'LOADED' && (
-          <Title text={articleBySlug.title} />
+          <Title text={articleData.title} />
         )}
         <Box px='5' pb='40' w='full'>
           {articleRequestStatus === 'LOADING' && (
@@ -108,18 +110,7 @@ export function ArticleContent({ route }: Props) {
                 Artigo:
               </Text>
               <Text fontSize='2xl' fontFamily='regular' color='complement.500'>
-                {articleBySlug.slug}
-              </Text>
-              <Text
-                fontSize='2xl'
-                fontFamily='bold'
-                color='complement.500'
-                mt='10'
-              >
-                Erro:
-              </Text>
-              <Text fontSize='2xl' fontFamily='regular' color='complement.500'>
-                {errorLog}
+                {route.params.slug}
               </Text>
             </Box>
           )}
@@ -147,9 +138,9 @@ export function ArticleContent({ route }: Props) {
                   },
                 }}
               >
-                {articleText}
+                {articleData.content}
               </Markdown>
-              {articleBySlug.adMeta && (
+              {articleData.adMeta && (
                 <Box
                   borderWidth='3'
                   borderColor='complement.500'
@@ -164,10 +155,10 @@ export function ArticleContent({ route }: Props) {
                     textAlign='center'
                     mb='10'
                   >
-                    {articleBySlug.adMeta.adName}
+                    {articleData.adMeta.adName}
                   </Text>
                   <Text fontSize='2xl' fontFamily='regular'>
-                    {articleBySlug.adMeta.adWebsiteUrl}
+                    {articleData.adMeta.adWebsiteUrl}
                   </Text>
                 </Box>
               )}
