@@ -1,17 +1,13 @@
-import { useNavigation } from '@react-navigation/native'
-import { Box, Button, Center, Text, useToast } from 'native-base'
+import { Box, Button, Center, Text } from 'native-base'
 import { GoogleLogo } from 'phosphor-react-native'
 
+import { useTypedNavigation } from '../utils/useTypedNavigation'
 import Logotipo from '../assets/logotipo.svg'
 
 export function SignIn() {
-  const toast = useToast()
-  const { navigate } = useNavigation()
+  const { navigate } = useTypedNavigation()
 
   function handleLogin() {
-    toast.show({
-      description: 'Bem vindo Mateus!',
-    })
     navigate('feed')
   }
 
