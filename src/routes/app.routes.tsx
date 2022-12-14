@@ -6,8 +6,17 @@ import { Feed } from '../screens/Feed'
 import { ListProfessionals } from '../screens/ListProfessionals'
 import { Options } from '../screens/Options'
 import { SignIn } from '../screens/SignIn'
+import { ArticleContent } from '../screens/ArticleContent'
 
-const { Navigator, Screen } = createBottomTabNavigator()
+export type TabNavigatorParamList = {
+  'sign-in': {}
+  feed: {}
+  article: { slug: string }
+  'list-professionals': {}
+  options: {}
+}
+
+const { Navigator, Screen } = createBottomTabNavigator<TabNavigatorParamList>()
 
 export function AppRoutes() {
   const { colors, sizes } = useTheme()
@@ -47,6 +56,13 @@ export function AppRoutes() {
           tabBarIcon: ({ color }) => (
             <Article color={color} size={35} weight='duotone' />
           ),
+        }}
+      />
+      <Screen
+        name='article'
+        component={ArticleContent}
+        options={{
+          tabBarButton: () => null,
         }}
       />
       <Screen
