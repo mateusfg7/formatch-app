@@ -14,6 +14,7 @@ export function ArticleList() {
             <ArticleCard
               key={article.slug}
               title={article.title}
+              slug={article.slug}
               imageBannerUrl={article.bannerUrl}
               adMeta={article.adMeta}
             />
@@ -22,6 +23,7 @@ export function ArticleList() {
           return (
             <ArticleCard
               key={article.slug}
+              slug={article.slug}
               title={article.title}
               imageBannerUrl={article.bannerUrl}
             />
