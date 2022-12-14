@@ -1,5 +1,5 @@
 import Constants from 'expo-constants'
-import { Box, HStack, useTheme, VStack } from 'native-base'
+import { Box, HStack, Text, useTheme, VStack } from 'native-base'
 import { ArrowLeft } from 'phosphor-react-native'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native'
@@ -7,9 +7,14 @@ import { TouchableOpacity } from 'react-native'
 interface Props {
   showBackButton?: boolean
   navigateToScreen?: string
+  title?: string
 }
 
-export function Header({ showBackButton = false, navigateToScreen }: Props) {
+export function Header({
+  showBackButton = false,
+  navigateToScreen,
+  title,
+}: Props) {
   const EmptyBoxSpace = () => <Box w='8' h='8' />
 
   const { sizes, colors } = useTheme()
@@ -26,11 +31,10 @@ export function Header({ showBackButton = false, navigateToScreen }: Props) {
   return (
     <VStack w='full' pt={Constants.statusBarHeight}>
       <HStack
-        h='16'
-        py='3'
+        py='4'
         px='5'
         alignItems='center'
-        justifyContent='space-between'
+        justifyContent={title ? 'flex-start' : 'space-between'}
       >
         {showBackButton ? (
           <TouchableOpacity onPress={() => handleBackNavigation()}>
@@ -43,9 +47,16 @@ export function Header({ showBackButton = false, navigateToScreen }: Props) {
         ) : (
           <EmptyBoxSpace />
         )}
-
-        <EmptyBoxSpace />
-        <EmptyBoxSpace />
+        {title ? (
+          <Text color='complement.500' fontFamily='bold' fontSize='md' ml='4'>
+            {title}
+          </Text>
+        ) : (
+          <>
+            <EmptyBoxSpace />
+            <EmptyBoxSpace />
+          </>
+        )}
       </HStack>
     </VStack>
   )
