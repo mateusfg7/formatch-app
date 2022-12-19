@@ -5,6 +5,7 @@
   ],
   "commitBodyTable": true,
   "branchPrefix": "deps/",
+  "bumpVersion": "patch",
   "labels": ["dependencies"],
   "semanticCommits": "enabled",
   "packageRules": [
@@ -23,8 +24,7 @@
     },
     {
       "matchUpdateTypes": ["pin"],
-      "addLabels": ["d:pin"],
-      "automerge": true
+      "addLabels": ["d:pin"]
     }
   ]
 }
