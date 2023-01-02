@@ -2,12 +2,14 @@ import { Box, Button, Center, Text } from 'native-base'
 import { GoogleLogo } from 'phosphor-react-native'
 
 import { useTypedNavigation } from '../utils/useTypedNavigation'
+import { developmentWarning } from '../utils/developmentWarning'
 import Logotipo from '../assets/logotipo.svg'
 
 export function SignIn() {
   const { navigate } = useTypedNavigation()
 
   function handleLogin() {
+    developmentWarning()
     navigate('feed')
   }
 
