@@ -1,4 +1,4 @@
-import React, { useRef, createRef, useState } from 'react'
+import React, { createRef, useState } from 'react'
 import {
   View,
   TouchableOpacity,
@@ -9,7 +9,10 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native'
-import ActionSheet, { SheetManager } from 'react-native-actions-sheet'
+import ActionSheet, {
+  SheetManager,
+  ActionSheetRef,
+} from 'react-native-actions-sheet'
 import { useTheme } from 'native-base'
 
 type RenderItemProp<T> = {
@@ -52,8 +55,7 @@ export const Picker = <T,>({
 }: PickerProps<T>) => {
   const [selectedKey, setSelectedKey] = useState(null)
 
-  const actionSheetRef = createRef<ActionSheet>()
-  const scrollViewRef = useRef(null)
+  const actionSheetRef = createRef<ActionSheetRef>()
 
   const { sizes, colors, fontSizes, radii } = useTheme()
 
@@ -90,19 +92,23 @@ export const Picker = <T,>({
     <ActionSheet
       id={id}
       ref={actionSheetRef}
-      indicatorColor={'transparent'}
-      gestureEnabled={true}
-      keyboardShouldPersistTaps='always'
+      containerStyle={{
+        padding: sizes[3],
+      }}
+      indicatorStyle={{
+        backgroundColor: colors.complement[300],
+      }}
+      gestureEnabled
+      animated
     >
       <SafeAreaView
         style={{
           height: height,
-          paddingHorizontal: sizes[3],
+          paddingTop: sizes[3],
         }}
       >
         <FlatList<T>
           disableScrollViewPanResponder={true}
-          contentContainerStyle={{ paddingHorizontal: 20 }}
           stickyHeaderIndices={[0]}
           ListHeaderComponent={
             <View
@@ -116,7 +122,6 @@ export const Picker = <T,>({
                     flexDirection: 'row',
                     width: sizes.full,
                     alignItems: 'center',
-                    justifyContent: 'space-between',
                     marginBottom: sizes[3],
                   }}
                 >
@@ -141,7 +146,11 @@ export const Picker = <T,>({
                   </View>
 
                   <TouchableOpacity
-                    style={{ padding: 10 }}
+                    style={{
+                      flex: 1,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
                     onPress={() => {
                       onClose()
                     }}
@@ -191,7 +200,6 @@ export const Picker = <T,>({
             }
             return null
           }}
-          ref={scrollViewRef}
           nestedScrollEnabled={true}
           data={data}
           renderItem={({ item, index }) => {
@@ -202,9 +210,6 @@ export const Picker = <T,>({
             return <Item item={item} index={index} />
           }}
           keyExtractor={keyExtractor}
-          onMomentumScrollEnd={() =>
-            actionSheetRef.current?.handleChildScrollEnd()
-          }
         />
       </SafeAreaView>
     </ActionSheet>
