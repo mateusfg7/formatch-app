@@ -40,6 +40,7 @@
     "@babel/core": "^7.12.9",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "husky": "^8.0.0",
     "react-native-svg-transformer": "^1.0.0"
   },
