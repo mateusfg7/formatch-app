@@ -5,7 +5,10 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
+import * as WebBrowser from 'expo-web-browser'
+
 import { Routes } from './src/routes'
+import { AuthContextProvider } from './src/contexts/AuthContext'
 import { Loading } from './src/components/Loading'
 
 import { THEME } from './src/styles/theme'
@@ -16,6 +19,8 @@ const nativeBaseConfig = {
   },
 }
 
+WebBrowser.maybeCompleteAuthSession()
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -24,12 +29,14 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME} config={nativeBaseConfig}>
-      <StatusBar
-        barStyle='dark-content'
-        backgroundColor='transparent'
-        translucent
-      />
-      {fontsLoaded ? <Routes /> : <Loading />}
+      <AuthContextProvider>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='transparent'
+          translucent
+        />
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   )
 }
