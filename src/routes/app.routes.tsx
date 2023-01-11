@@ -5,11 +5,9 @@ import { Article, MagnifyingGlass, GearSix } from 'phosphor-react-native'
 import { Feed } from '../screens/Feed'
 import { ListProfessionals } from '../screens/ListProfessionals'
 import { Options } from '../screens/Options'
-import { SignIn } from '../screens/SignIn'
 import { ArticleContent } from '../screens/ArticleContent'
 
 export type TabNavigatorParamList = {
-  'sign-in': {}
   feed: {}
   article: { slug: string }
   'list-professionals': {}
@@ -39,16 +37,6 @@ export function AppRoutes() {
         },
       }}
     >
-      <Screen
-        name='sign-in'
-        component={SignIn}
-        options={{
-          tabBarButton: () => null,
-          tabBarStyle: {
-            display: 'none',
-          },
-        }}
-      />
       <Screen
         name='feed'
         component={Feed}
