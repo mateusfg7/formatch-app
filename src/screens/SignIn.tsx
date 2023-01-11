@@ -1,17 +1,11 @@
 import { Box, Button, Center, Text } from 'native-base'
 import { GoogleLogo } from 'phosphor-react-native'
 
-import { useTypedNavigation } from '../utils/useTypedNavigation'
-import { developmentWarning } from '../utils/developmentWarning'
 import Logotipo from '../assets/logotipo.svg'
+import { useAuth } from '../hooks/useAuth'
 
 export function SignIn() {
-  const { navigate } = useTypedNavigation()
-
-  function handleLogin() {
-    developmentWarning()
-    navigate('feed')
-  }
+  const { isUserLoading, signIn } = useAuth()
 
   return (
     <Center flex={1} backgroundColor='background.500'>
@@ -26,10 +20,11 @@ export function SignIn() {
         borderRadius='2xl'
         marginBottom='5'
         leftIcon={<GoogleLogo weight='bold' color='#fff' size={35} />}
+        isLoading={isUserLoading}
         _pressed={{
           backgroundColor: '#DD4D41',
         }}
-        onPress={() => handleLogin()}
+        onPress={signIn}
       >
         <Text color='white' fontFamily='bold' fontSize='xl'>
           ENTRAR COM O GOOGLE
