@@ -1,5 +1,6 @@
 import axios from 'axios'
+import { API_URL } from '../constants'
 
 export const api = axios.create({
-  baseURL: 'https://formatch.vercel.app/api',
+  baseURL: API_URL,
 })
