@@ -1,9 +1,11 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 import * as AuthSession from 'expo-auth-session'
 import * as Google from 'expo-auth-session/providers/google'
+import constants from 'expo-constants'
 
 import { api } from '../services/api'
-import { GOOGLE_CLIENT_ID } from '../constants'
+import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
+import { errorToast } from '../utils/errorToast'
 
 interface UserProps {
   name: string
@@ -29,8 +31,12 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const [isUserLoading, setIsUserLoading] = useState(false)
 
   const [_request, response, promptAsync] = Google.useAuthRequest({
-    clientId: GOOGLE_CLIENT_ID,
-    redirectUri: AuthSession.makeRedirectUri({ useProxy: true }),
+    expoClientId: EXPO_CLIENT_ID,
+    androidClientId: ANDROID_CLIENT_ID,
+    redirectUri:
+      constants.appOwnership === 'expo'
+        ? AuthSession.makeRedirectUri({ useProxy: true })
+        : 'com.mateusfg7.formatch:/',
     scopes: ['profile', 'email'],
   })
 
@@ -40,6 +46,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       await promptAsync()
     } catch (error) {
       console.error(error)
+      errorToast('Erro ao authenticar usuário')
       throw error
     } finally {
       setIsUserLoading(false)
@@ -59,6 +66,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       setUser(userInfoResponse.data)
     } catch (error) {
       console.error(error)
+      errorToast('Erro ao criar usuário')
       throw error
     } finally {
       setIsUserLoading(false)
