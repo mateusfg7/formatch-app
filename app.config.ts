@@ -8,6 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'formatch',
   scheme: 'formatch',
   version: packageConfig.version,
+  jsEngine: 'hermes',
   orientation: 'portrait',
   icon: './assets/icon.png',
   userInterfaceStyle: 'light',
