@@ -2,9 +2,9 @@ import { HStack, Text, VStack } from 'native-base'
 import { Image } from 'native-base'
 import Constants from 'expo-constants'
 
-import { Header } from '../components/Header'
-import { Title } from '../components/Title'
-import { useAuth } from '../hooks/useAuth'
+import { Header } from '../../components/Header'
+import { Title } from '../../components/Title'
+import { useAuth } from '../../hooks/useAuth'
 
 export function Options() {
   const { user } = useAuth()
