@@ -1,9 +1,10 @@
-import { NativeBaseProvider, StatusBar } from 'native-base'
+import { Box, NativeBaseProvider, StatusBar } from 'native-base'
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
+import Constants from 'expo-constants'
 
 import * as WebBrowser from 'expo-web-browser'
 
@@ -32,7 +33,7 @@ export default function App() {
       <AuthContextProvider>
         <StatusBar
           barStyle='dark-content'
-          backgroundColor='transparent'
+          backgroundColor='rgba(242, 245, 249, 0.8)'
           translucent
         />
         {fontsLoaded ? <Routes /> : <Loading />}
