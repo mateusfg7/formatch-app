@@ -1,53 +1,87 @@
-import { HStack, Text, VStack } from 'native-base'
-import { Image } from 'native-base'
-import Constants from 'expo-constants'
+import {
+  Box,
+  Divider,
+  HStack,
+  Pressable,
+  Text,
+  VStack,
+  useTheme,
+} from 'native-base'
+import {
+  BookmarksSimple,
+  Briefcase,
+  SketchLogo,
+  User,
+} from 'phosphor-react-native'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
-import { useAuth } from '../../hooks/useAuth'
+
+import { developmentWarning } from '../../utils/developmentWarning'
+import { useTypedOptionsNavigation } from '../../utils/useTypedOptionsNavigation'
 
 export function Options() {
-  const { user } = useAuth()
+  const { fontSizes } = useTheme()
 
+  const { navigate } = useTypedOptionsNavigation()
   return (
     <VStack flex={1} backgroundColor='background.500'>
       <Header />
-      <Title text='Meus dados' />
-      <VStack px='5' alignItems='center'>
-        <Image
-          source={{ uri: user.avatar_url }}
-          alt='Profile image'
-          size='xl'
-          resizeMode='contain'
-          borderRadius='full'
-          mb='6'
-        />
-        <HStack justifyContent='flex-start' alignItems='center' mb='3' w='full'>
-          <Text fontSize='lg'>nome: </Text>
-          <Text fontSize='xl'>{user.name}</Text>
-        </HStack>
-        <HStack justifyContent='flex-start' alignItems='center' mb='3' w='full'>
-          <Text fontSize='lg'>email: </Text>
-          <Text fontSize='xl'>{user.email}</Text>
-        </HStack>
-        <HStack justifyContent='flex-start' alignItems='center' mb='3' w='full'>
-          <Text fontSize='lg'>premium: </Text>
-          <Text fontSize='xl'>{String(user.subscribe)}</Text>
-        </HStack>
-        <HStack justifyContent='flex-start' alignItems='center' mb='3' w='full'>
-          <Text fontSize='lg'>environment: </Text>
-          <Text fontSize='xl'>
-            {String(Constants.appOwnership) ?? 'standalone'}
-          </Text>
-        </HStack>
-        <HStack justifyContent='flex-start' alignItems='center' mb='3' w='full'>
-          <Text fontSize='lg'>system version: </Text>
-          <Text fontSize='xl'>{String(Constants.systemVersion)}</Text>
-        </HStack>
-        <HStack justifyContent='flex-start' alignItems='center' mb='3' w='full'>
-          <Text fontSize='lg'>js engine: </Text>
-          <Text fontSize='xl'>{String(Constants.expoConfig.jsEngine)}</Text>
-        </HStack>
+      <Title text='Opções' />
+      <VStack px='5' py='7'>
+        <Pressable
+          onPress={() => navigate('options.profile')}
+          _pressed={{ opacity: 0.6 }}
+        >
+          <HStack alignItems='center'>
+            <Box mr='4'>
+              <User weight='bold' size={fontSizes['2xl']} />
+            </Box>
+            <Text fontSize='2xl'>Meus dados</Text>
+          </HStack>
+        </Pressable>
+        <Box px='9' my='7'>
+          <Divider />
+        </Box>
+        <Pressable
+          onPress={() => developmentWarning()}
+          _pressed={{ opacity: 0.6 }}
+        >
+          <HStack alignItems='center'>
+            <Box mr='4'>
+              <SketchLogo weight='bold' size={fontSizes['2xl']} />
+            </Box>
+            <Text fontSize='2xl'>Assinatura premium</Text>
+          </HStack>
+        </Pressable>
+        <Box px='9' my='7'>
+          <Divider />
+        </Box>
+        <Pressable
+          onPress={() => developmentWarning()}
+          _pressed={{ opacity: 0.6 }}
+        >
+          <HStack alignItems='center'>
+            <Box mr='4'>
+              <BookmarksSimple weight='bold' size={fontSizes['2xl']} />
+            </Box>
+            <Text fontSize='2xl'>Profissionais salvos</Text>
+          </HStack>
+        </Pressable>
+        <Box px='9' my='7'>
+          <Divider />
+        </Box>
+        <Pressable
+          onPress={() => developmentWarning()}
+          _pressed={{ opacity: 0.6 }}
+        >
+          <HStack alignItems='center'>
+            <Box mr='4'>
+              <Briefcase weight='bold' size={fontSizes['2xl']} />
+            </Box>
+            <Text fontSize='2xl'>Se cadastrar</Text>
+          </HStack>
+        </Pressable>
       </VStack>
     </VStack>
   )
