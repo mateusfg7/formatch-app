@@ -4,8 +4,8 @@ import { Article, MagnifyingGlass, GearSix } from 'phosphor-react-native'
 
 import { Feed } from '../screens/Feed'
 import { ListProfessionals } from '../screens/ListProfessionals'
-import { Options } from '../screens/Options'
 import { ArticleContent } from '../screens/ArticleContent'
+import { OptionsRoute } from './options.routes'
 
 export type TabNavigatorParamList = {
   feed: {}
@@ -64,7 +64,7 @@ export function AppRoutes() {
       />
       <Screen
         name='options'
-        component={Options}
+        component={OptionsRoute}
         options={{
           tabBarIcon: ({ color }) => (
             <GearSix color={color} size={35} weight='duotone' />
