@@ -38,6 +38,7 @@ export const THEME = extendTheme({
       700: '#040406',
       800: '#020203',
     },
+    subscribe: '#9D9700',
   },
   fonts: {
     bold: 'Roboto_700Bold',
