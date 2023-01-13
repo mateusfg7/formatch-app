@@ -18,6 +18,7 @@ export interface AuthContextDataProps {
   user: UserProps
   isUserLoading: boolean
   signIn: () => void
+  signOut: () => void
 }
 
 interface AuthProviderProps {
@@ -53,6 +54,10 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     }
   }
 
+  function signOut() {
+    setUser({} as UserProps)
+  }
+
   async function signInWithGoogle(access_token: string) {
     try {
       setIsUserLoading(true)
@@ -80,7 +85,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }, [response])
 
   return (
-    <AuthContext.Provider value={{ user, isUserLoading, signIn }}>
+    <AuthContext.Provider value={{ user, isUserLoading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
