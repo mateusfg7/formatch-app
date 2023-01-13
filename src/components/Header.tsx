@@ -29,10 +29,8 @@ export function Header({
   }
 
   return (
-    <VStack w='full' pt={Constants.statusBarHeight}>
+    <VStack w='full' mt={Constants.statusBarHeight} pt='3' pb='2' px='5'>
       <HStack
-        py='4'
-        px='5'
         alignItems='center'
         justifyContent={title ? 'flex-start' : 'space-between'}
       >
