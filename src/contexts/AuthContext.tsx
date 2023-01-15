@@ -6,6 +6,8 @@ import constants from 'expo-constants'
 import { api } from '../services/api'
 import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
 import { errorToast } from '../utils/errorToast'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage'
+import { infoToast } from '../utils/infoToast'
 
 interface UserProps {
   name: string
@@ -19,6 +21,7 @@ export interface AuthContextDataProps {
   isUserLoading: boolean
   signIn: () => void
   signOut: () => void
+  checkUserOnStorage: () => Promise<void>
 }
 
 interface AuthProviderProps {
@@ -41,6 +44,26 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     scopes: ['profile', 'email'],
   })
 
+  const { getItem, setItem, removeItem } = useAsyncStorage('@Formatch_user')
+
+  async function checkUserOnStorage() {
+    try {
+      const userOnStorage = await getItem()
+      if (!userOnStorage) {
+        return
+      }
+
+      const parsedUserInfo = JSON.parse(userOnStorage)
+      api.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${parsedUserInfo.token}`
+
+      setUser(parsedUserInfo.user)
+    } catch (error) {
+      errorToast('Erro ao verificar usuário')
+    }
+  }
+
   async function signIn() {
     try {
       setIsUserLoading(true)
@@ -56,6 +79,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
   function signOut() {
     setUser({} as UserProps)
+    removeItem()
   }
 
   async function signInWithGoogle(access_token: string) {
@@ -69,6 +93,12 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
       const userInfoResponse = await api.get('/user')
       setUser(userInfoResponse.data)
+      setItem(
+        JSON.stringify({
+          user: userInfoResponse.data,
+          token: tokenResponse.data.token,
+        })
+      )
     } catch (error) {
       console.error(error)
       errorToast('Erro ao criar usuário')
@@ -85,7 +115,9 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }, [response])
 
   return (
-    <AuthContext.Provider value={{ user, isUserLoading, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ user, isUserLoading, signIn, signOut, checkUserOnStorage }}
+    >
       {children}
     </AuthContext.Provider>
   )
