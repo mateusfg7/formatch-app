@@ -26,6 +26,7 @@ export function AppRoutes() {
         tabBarShowLabel: false,
         tabBarActiveTintColor: colors.primary[500],
         tabBarInactiveTintColor: colors.complement[500],
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           position: 'absolute',
           height: sizes[22],
