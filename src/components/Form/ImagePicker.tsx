@@ -39,10 +39,10 @@ export function ImagePicker({ onChange, errorMessage, ...styles }: Props) {
 
   return (
     <Box mb='4' alignItems='center' justifyContent='center' {...styles}>
-      <Pressable onPress={pickImage} _pressed={{ opacity: 0.6 }}>
+      <Pressable onPress={pickImage} _pressed={{ opacity: 0.5 }}>
         <Box
-          w='40'
-          h='40'
+          w={image ? '40' : '32'}
+          h={image ? '40' : '32'}
           alignItems='center'
           justifyContent='center'
           borderWidth='1'
