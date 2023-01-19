@@ -40,4 +40,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       projectId: '6d357eb5-2c98-48ab-b711-afdb27583908',
     },
   },
+  plugins: [['expo-image-picker']],
 })
