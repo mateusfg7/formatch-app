@@ -56,7 +56,7 @@ export function InstagramInput({ styles, inputProps }: Props) {
             }
           >
             <Box
-              h='10'
+              h='7'
               w='full'
               bg={{
                 linearGradient: {
