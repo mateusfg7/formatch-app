@@ -16,7 +16,7 @@ import ActionSheet, {
 import { useTheme } from 'native-base'
 
 type RenderItemProp<T> = {
-  renderListItem: (item: T, index: number) => React.ReactElement
+  renderListItem?: (item: T, index: number) => React.ReactElement
 }
 
 export type PickerProps<T> = {
