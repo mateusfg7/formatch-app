@@ -20,9 +20,8 @@ export function Submit({ disabled = false, ...rest }: IButtonProps) {
       borderWidth='2'
       borderColor={disabled ? 'complement.400' : 'primary.500'}
       borderRadius='3xl'
-      disabled={disabled}
       _pressed={{
-        bg: 'primary.700',
+        bg: disabled ? 'rgba(84, 84, 87, 0.07)' : 'primary.700',
       }}
       {...rest}
     >
