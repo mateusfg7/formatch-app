@@ -1,23 +1,6 @@
-import { Box, Button, Container, Pressable } from 'native-base'
-import {
-  FormControl,
-  HStack,
-  Text,
-  VStack,
-  Input as NativeBaseInput,
-  Center,
-  useTheme,
-  StyledProps,
-  IInputProps,
-  TextArea,
-  View,
-} from 'native-base'
-import {
-  ArrowSquareOut,
-  Icon,
-  TextAlignLeft,
-  WarningCircle,
-} from 'phosphor-react-native'
+import { Box, Pressable } from 'native-base'
+import { HStack, Text, VStack, useTheme, StyledProps } from 'native-base'
+import { TextAlignLeft } from 'phosphor-react-native'
 import { useEffect, useState } from 'react'
 import { TextModal } from './TextModal'
 
