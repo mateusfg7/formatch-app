@@ -1,15 +1,15 @@
+import { useState } from 'react'
 import {
   Box,
   Button,
   KeyboardAvoidingView,
   VStack,
+  TextArea,
+  HStack,
+  Text,
+  Modal,
   useTheme,
 } from 'native-base'
-import { TextArea } from 'native-base'
-import { HStack } from 'native-base'
-import { Text } from 'native-base'
-import { Modal } from 'native-base'
-import { useState } from 'react'
 import { WarningCircle } from 'phosphor-react-native'
 import * as Haptics from 'expo-haptics'
 
@@ -53,11 +53,11 @@ export function TextModal({ isOpen, setIsOpen, handleText }: Props) {
         alignItems='center'
         justifyContent='center'
       >
-        <Modal.Content w='95%' borderRadius='3xl'>
+        <Modal.Content w='95%' maxH='5/6' borderRadius='3xl'>
           <Modal.CloseButton />
           <Modal.Header>Biografia</Modal.Header>
-          <Modal.Body>
-            <VStack w='full' h='full' maxH='5/6'>
+          <Modal.Body h='full'>
+            <VStack h='full'>
               <TextArea
                 autoCompleteType=''
                 variant='unstyled'
@@ -66,8 +66,7 @@ export function TextModal({ isOpen, setIsOpen, handleText }: Props) {
                 placeholder='Fale mais sobre você e seu trabalho'
                 placeholderTextColor='complement.300'
                 color='complement.500'
-                minH='16'
-                h='full'
+                h={!isInvalid ? 'full' : '16'}
                 value={text}
                 onChangeText={handleSetText}
                 _input={{
