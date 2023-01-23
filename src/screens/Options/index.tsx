@@ -72,7 +72,7 @@ export function Options() {
           <Divider />
         </Box>
         <Pressable
-          onPress={() => developmentWarning()}
+          onPress={() => navigate('options.register')}
           _pressed={{ opacity: 0.6 }}
         >
           <HStack alignItems='center'>
