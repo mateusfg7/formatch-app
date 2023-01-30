@@ -8,6 +8,7 @@ import * as Haptics from 'expo-haptics'
 
 import { formatBrPhoneNumber } from '../../utils/formatBrPhoneNumber'
 import { developmentWarning } from '../../utils/developmentWarning'
+import { errorToast } from '../../utils/errorToast'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
@@ -22,6 +23,8 @@ import {
   InstagramInput,
   Biography,
 } from '../../components/Form'
+
+import { api } from '../../services/api'
 
 interface FormDataProps {
   imageUri: string
@@ -64,9 +67,51 @@ export function Register() {
     undefined
   )
 
-  function handleData(data: FormDataProps) {
+  async function handleData(data: FormDataProps) {
     setIsRequesting(true)
-    console.log(data)
+
+    if (!data.email && !data.phone && !data.whatsapp && !data.instagram) {
+      setIsRequesting(false)
+      errorToast('Você deve ter pelomenos um meio de contato')
+      return
+    }
+
+    const imageRequest = await fetch(data.imageUri)
+    const imageBlob = await imageRequest.blob()
+    const imageFileType = imageBlob.type.split('/')[1]
+
+    const formData = new FormData()
+
+    formData.append('name', data.name)
+    formData.append('state_uf', data.stateUf)
+    formData.append('city', data.city)
+    formData.append('biography', data.bio)
+    formData.append('services', data.occupation)
+    formData.append('profile_picture_file', {
+      uri: data.imageUri,
+      type: imageBlob.type,
+      name: `profile.${imageFileType}`,
+    } as unknown as Blob)
+
+    if (data.email) formData.append('email', data.email)
+    if (data.phone) formData.append('phone', data.phone)
+    if (data.whatsapp) formData.append('whatsapp', data.whatsapp)
+    if (data.instagram) formData.append('instagram', data.instagram)
+
+    await api
+      .postForm('/professional/create', formData)
+      .then((response) => {
+        console.log(`STATUS | ${response.status} ${response.statusText}`)
+        console.log('DATA:')
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        setIsRequesting(false)
+        errorToast('Ocorreu um erro durante o registro de profissional')
+        errorToast(error)
+      })
+
     setIsRequesting(false)
     developmentWarning()
   }
