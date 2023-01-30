@@ -6,12 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import * as Haptics from 'expo-haptics'
 
-import { formatBrPhoneNumber } from '../../utils/formatBrPhoneNumber'
-import { developmentWarning } from '../../utils/developmentWarning'
-import { errorToast } from '../../utils/errorToast'
+import { formatBrPhoneNumber } from '../../../utils/formatBrPhoneNumber'
+import { developmentWarning } from '../../../utils/developmentWarning'
+import { errorToast } from '../../../utils/errorToast'
 
-import { Header } from '../../components/Header'
-import { Title } from '../../components/Title'
+import { Header } from '../../../components/Header'
+import { Title } from '../../../components/Title'
 import {
   Input,
   Submit,
@@ -22,9 +22,9 @@ import {
   WhatsAppInput,
   InstagramInput,
   Biography,
-} from '../../components/Form'
+} from '../../../components/Form'
 
-import { api } from '../../services/api'
+import { api } from '../../../services/api'
 
 interface FormDataProps {
   imageUri: string
@@ -52,7 +52,7 @@ const registerSchema = yup.object({
   instagram: yup.string().optional(),
 })
 
-export function Register() {
+export function RegisterForm() {
   const {
     control,
     handleSubmit,
