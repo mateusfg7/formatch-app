@@ -10,6 +10,7 @@ import * as WebBrowser from 'expo-web-browser'
 
 import { Routes } from './src/routes'
 import { AuthContextProvider } from './src/contexts/AuthContext'
+import { ProfessionalContextProvider } from './src/contexts/AuthenticatedProfessionalContext'
 import { Loading } from './src/components/Loading'
 
 import { THEME } from './src/styles/theme'
@@ -31,12 +32,14 @@ export default function App() {
   return (
     <NativeBaseProvider theme={THEME} config={nativeBaseConfig}>
       <AuthContextProvider>
-        <StatusBar
-          barStyle='dark-content'
-          backgroundColor='rgba(242, 245, 249, 0.8)'
-          translucent
-        />
-        {fontsLoaded ? <Routes /> : <Loading />}
+        <ProfessionalContextProvider>
+          <StatusBar
+            barStyle='dark-content'
+            backgroundColor='rgba(242, 245, 249, 0.8)'
+            translucent
+          />
+          {fontsLoaded ? <Routes /> : <Loading />}
+        </ProfessionalContextProvider>
       </AuthContextProvider>
     </NativeBaseProvider>
   )
