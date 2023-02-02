@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ScrollView, Text, VStack } from 'native-base'
+import { ScrollView, VStack } from 'native-base'
 import { Envelope, IdentificationCard, Phone } from 'phosphor-react-native'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,8 +7,6 @@ import * as yup from 'yup'
 import * as Haptics from 'expo-haptics'
 
 import { formatBrPhoneNumber } from '../../../utils/formatBrPhoneNumber'
-import { developmentWarning } from '../../../utils/developmentWarning'
-import { errorToast } from '../../../utils/errorToast'
 
 import { Header } from '../../../components/Header'
 import { Title } from '../../../components/Title'
@@ -24,20 +22,7 @@ import {
   Biography,
 } from '../../../components/Form'
 
-import { api } from '../../../services/api'
-
-interface FormDataProps {
-  imageUri: string
-  name: string
-  phone: string
-  email: string
-  stateUf: string
-  city: string
-  occupation: string
-  bio: string
-  whatsapp: string
-  instagram: string
-}
+import { useProfessional } from '../../../hooks/useProfessional'
 
 const registerSchema = yup.object({
   imageUri: yup.string().required('Selecione uma imagem de perfil'),
@@ -67,53 +52,14 @@ export function RegisterForm() {
     undefined
   )
 
+  const { createProfessional } = useProfessional()
+
   async function handleData(data: FormDataProps) {
     setIsRequesting(true)
 
-    if (!data.email && !data.phone && !data.whatsapp && !data.instagram) {
-      setIsRequesting(false)
-      errorToast('Você deve ter pelomenos um meio de contato')
-      return
-    }
-
-    const imageRequest = await fetch(data.imageUri)
-    const imageBlob = await imageRequest.blob()
-    const imageFileType = imageBlob.type.split('/')[1]
-
-    const formData = new FormData()
-
-    formData.append('name', data.name)
-    formData.append('state_uf', data.stateUf)
-    formData.append('city', data.city)
-    formData.append('biography', data.bio)
-    formData.append('services', data.occupation)
-    formData.append('profile_picture_file', {
-      uri: data.imageUri,
-      type: imageBlob.type,
-      name: `profile.${imageFileType}`,
-    } as unknown as Blob)
-
-    if (data.email) formData.append('email', data.email)
-    if (data.phone) formData.append('phone', data.phone)
-    if (data.whatsapp) formData.append('whatsapp', data.whatsapp)
-    if (data.instagram) formData.append('instagram', data.instagram)
-
-    await api
-      .postForm('/professional/create', formData)
-      .then((response) => {
-        console.log(`STATUS | ${response.status} ${response.statusText}`)
-        console.log('DATA:')
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error)
-        setIsRequesting(false)
-        errorToast('Ocorreu um erro durante o registro de profissional')
-        errorToast(error)
-      })
+    await createProfessional(data, setIsRequesting)
 
     setIsRequesting(false)
-    developmentWarning()
   }
 
   async function handleRegister() {
@@ -289,7 +235,6 @@ export function RegisterForm() {
             disabled={!isValid}
             isLoading={isRequesting}
           />
-          {isRequesting && <Text>Loading...</Text>}
         </VStack>
       </ScrollView>
     </VStack>
