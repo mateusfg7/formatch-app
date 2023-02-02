@@ -20,8 +20,12 @@ import { Title } from '../../components/Title'
 import { developmentWarning } from '../../utils/developmentWarning'
 import { useTypedOptionsNavigation } from '../../utils/useTypedOptionsNavigation'
 
+import { useProfessional } from '../../hooks/useProfessional'
+
 export function Options() {
   const { fontSizes } = useTheme()
+
+  const { professionalData } = useProfessional()
 
   const { navigate } = useTypedOptionsNavigation()
   return (
@@ -79,7 +83,9 @@ export function Options() {
             <Box mr='4'>
               <Briefcase weight='bold' size={fontSizes['2xl']} />
             </Box>
-            <Text fontSize='2xl'>Se cadastrar</Text>
+            <Text fontSize='2xl'>
+              {professionalData.code ? 'Ver cadastro' : 'Se cadastrar'}
+            </Text>
           </HStack>
         </Pressable>
       </VStack>
