@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync_tag:
+    name: Sync Tag
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1.1.1
+        with:
+          deno-version: v1.x # Run with latest stable Deno.
+
+      - name: Cache Dependencies
+        run: deno task cache
+
+      - name: Bump Tag
+        run: deno task bump-tag
+
+  build:
+    name: Build App
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: yarn
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: 5.x
+          eas-version: latest
+          token: ${{ secrets.EXPO_ACCESS_TOKEN }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Build on EAS
+        run: yarn build
