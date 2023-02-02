@@ -6,7 +6,9 @@ import constants from 'expo-constants'
 import { api } from '../services/api'
 import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
 import { errorToast } from '../utils/errorToast'
-import { useAsyncStorage } from '@react-native-async-storage/async-storage'
+import AsyncStorage, {
+  useAsyncStorage,
+} from '@react-native-async-storage/async-storage'
 import { infoToast } from '../utils/infoToast'
 
 interface UserProps {
@@ -44,7 +46,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     scopes: ['profile', 'email'],
   })
 
-  const { getItem, setItem, removeItem } = useAsyncStorage('@Formatch_user')
+  const { getItem, setItem } = useAsyncStorage('@Formatch_user')
 
   async function checkUserOnStorage() {
     try {
@@ -78,8 +80,11 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
+    AsyncStorage.multiRemove([
+      '@Formatch_user',
+      '@Formatch_userAsProfessional',
+    ]).catch((error) => console.log(error))
     setUser({} as UserProps)
-    removeItem()
   }
 
   async function signInWithGoogle(access_token: string) {
