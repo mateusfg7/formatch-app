@@ -1,5 +1,5 @@
 import { HStack, Text, Toast } from 'native-base'
-import { Info, XCircle } from 'phosphor-react-native'
+import { Info } from 'phosphor-react-native'
 
 export function infoToast(message: string) {
   Toast.show({

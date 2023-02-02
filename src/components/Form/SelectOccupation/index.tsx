@@ -1,15 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import {
   HStack,
   Pressable,
-  Spinner,
   Text,
   Box,
   VStack,
   Center,
   useTheme,
   Flex,
-  Spacer,
 } from 'native-base'
 import { CaretDown, WarningCircle, X } from 'phosphor-react-native'
 import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box'

@@ -9,7 +9,6 @@ import { errorToast } from '../utils/errorToast'
 import AsyncStorage, {
   useAsyncStorage,
 } from '@react-native-async-storage/async-storage'
-import { infoToast } from '../utils/infoToast'
 
 interface UserProps {
   name: string

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { HStack, Pressable, Spinner, Text, useDisclose, Box } from 'native-base'
+import { HStack, Pressable, Spinner, Text, Box } from 'native-base'
 import { CaretDown } from 'phosphor-react-native'
 import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box'
 import { Picker, onOpen } from './Picker'

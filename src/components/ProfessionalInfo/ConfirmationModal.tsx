@@ -1,9 +1,12 @@
-import { Pressable, Spinner } from 'native-base'
-import { Text } from 'native-base'
-import { Box } from 'native-base'
-import { Modal } from 'native-base'
-import { VStack } from 'native-base'
-import { HStack } from 'native-base'
+import {
+  Pressable,
+  Spinner,
+  Text,
+  Box,
+  Modal,
+  VStack,
+  HStack,
+} from 'native-base'
 import { useState } from 'react'
 
 interface Props {
