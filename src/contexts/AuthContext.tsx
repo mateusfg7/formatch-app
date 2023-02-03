@@ -34,7 +34,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps>({} as UserProps)
   const [isUserLoading, setIsUserLoading] = useState(false)
 
-  const { removeProfessionalData } = useProfessional()
+  const { removeProfessionalData, getUserAsProfessional } = useProfessional()
 
   const [_request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: EXPO_CLIENT_ID,
@@ -96,12 +96,14 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
       const userInfoResponse = await api.get('/user')
       setUser(userInfoResponse.data)
-      setItem(
+      await setItem(
         JSON.stringify({
           user: userInfoResponse.data,
           token: tokenResponse.data.token,
         })
-      )
+      ).then(async () => {
+        await getUserAsProfessional()
+      })
     } catch (error) {
       console.error(error)
       errorToast('Erro ao criar usuário')
