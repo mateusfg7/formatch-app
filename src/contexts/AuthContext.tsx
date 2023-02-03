@@ -60,6 +60,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
         'Authorization'
       ] = `Bearer ${parsedUserInfo.token}`
 
+      await getUserAsProfessional()
       setUser(parsedUserInfo.user)
     } catch (error) {
       errorToast('Erro ao verificar usuário')
