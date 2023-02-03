@@ -5,7 +5,7 @@ import { Title } from '../components/Title'
 import { SelectState, State } from '../components/SelectState'
 import { SelectCity, City } from '../components/SelectCity'
 import { ArrowRight } from 'phosphor-react-native'
-import { developmentWarning } from '../utils/developmentWarning'
+import { feedbackToast } from '../utils/feedbackToast'
 
 export function ListProfessionals() {
   const [selectedState, setSelectedState] = useState<State>()
@@ -19,7 +19,7 @@ export function ListProfessionals() {
   }
 
   function handleSubmitButton() {
-    developmentWarning()
+    feedbackToast('WARNING', 'Em desenvolvimento')
   }
 
   return (

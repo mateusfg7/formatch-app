@@ -18,7 +18,7 @@ import {
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
 
-import { developmentWarning } from '../../utils/developmentWarning'
+import { feedbackToast } from '../../utils/feedbackToast'
 import { useTypedOptionsNavigation } from '../../utils/useTypedOptionsNavigation'
 
 import { useProfessional } from '../../hooks/useProfessional'
@@ -50,7 +50,7 @@ export function Options() {
           <Divider />
         </Box>
         <Pressable
-          onPress={() => developmentWarning()}
+          onPress={() => feedbackToast('WARNING', 'Em desenvolvimento')}
           _pressed={{ opacity: 0.6 }}
         >
           <HStack alignItems='center'>
@@ -64,7 +64,7 @@ export function Options() {
           <Divider />
         </Box>
         <Pressable
-          onPress={() => developmentWarning()}
+          onPress={() => feedbackToast('WARNING', 'Em desenvolvimento')}
           _pressed={{ opacity: 0.6 }}
         >
           <HStack alignItems='center'>
