@@ -6,9 +6,7 @@ import constants from 'expo-constants'
 import { api } from '../services/api'
 import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
 import { errorToast } from '../utils/errorToast'
-import AsyncStorage, {
-  useAsyncStorage,
-} from '@react-native-async-storage/async-storage'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { useProfessional } from '../hooks/useProfessional'
 
 interface UserProps {
