@@ -12,6 +12,7 @@ export interface ProfessionalContextProps {
     setIsRequesting?: (v: boolean) => void
   ): Promise<void>
   deleteProfessional: () => Promise<void>
+  removeProfessionalData: () => void
 }
 
 export const ProfessionalContext = createContext({} as ProfessionalContextProps)
@@ -100,14 +101,18 @@ export function ProfessionalContextProvider({
       })
   }
 
+  function removeProfessionalData() {
+    removeItem()
+    setProfessionalData({} as AuthenticatedProfessionalData)
+  }
+
   async function deleteProfessional() {
     await api
       .delete(`professional/delete/${professionalData.code}`)
       .then((response) => {
         if (response.status === 204) {
           infoToast('Registro deletado com sucesso!')
-          setProfessionalData({} as AuthenticatedProfessionalData)
-          removeItem()
+          removeProfessionalData()
         } else {
           errorToast('Ocorreu um erro durante a exclusão do registro')
         }
@@ -123,6 +128,7 @@ export function ProfessionalContextProvider({
       value={{
         professionalData,
         getUserAsProfessional,
+        removeProfessionalData,
         deleteProfessional,
         createProfessional,
       }}
