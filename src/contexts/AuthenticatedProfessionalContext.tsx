@@ -1,7 +1,6 @@
 import { ReactNode, createContext, useState } from 'react'
 import { api } from '../services/api'
-import { infoToast } from '../utils/infoToast'
-import { errorToast } from '../utils/errorToast'
+import { feedbackToast } from '../utils/infoToast'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
 export interface ProfessionalContextProps {
@@ -60,7 +59,7 @@ export function ProfessionalContextProvider({
   ) {
     if (!data.email && !data.phone && !data.whatsapp && !data.instagram) {
       setIsRequesting(false)
-      errorToast('Você deve ter pelomenos um meio de contato')
+      feedbackToast('ERROR', 'Você deve ter pelomenos um meio de contato')
       return
     }
 
@@ -89,15 +88,18 @@ export function ProfessionalContextProvider({
     await api
       .postForm('/professional/create', formData)
       .then((response) => {
-        infoToast('Profissional registrado com sucesso')
+        feedbackToast('INFO', 'Profissional registrado com sucesso')
         setProfessionalData(response.data)
         setItem(JSON.stringify(response.data))
       })
       .catch((error) => {
         console.log(error)
         setIsRequesting(false)
-        errorToast('Ocorreu um erro durante o registro de profissional')
-        errorToast(error.message)
+        feedbackToast(
+          'ERROR',
+          'Ocorreu um erro durante o registro de profissional'
+        )
+        feedbackToast('ERROR', error.message)
       })
   }
 
@@ -111,15 +113,18 @@ export function ProfessionalContextProvider({
       .delete(`professional/delete/${professionalData.code}`)
       .then((response) => {
         if (response.status === 204) {
-          infoToast('Registro deletado com sucesso!')
+          feedbackToast('INFO', 'Registro deletado com sucesso!')
           removeProfessionalData()
         } else {
-          errorToast('Ocorreu um erro durante a exclusão do registro')
+          feedbackToast(
+            'ERROR',
+            'Ocorreu um erro durante a exclusão do registro'
+          )
         }
       })
       .catch((error) => {
-        errorToast('Ocorreu um erro durante a exclusão do registro')
-        errorToast(error.message)
+        feedbackToast('ERROR', 'Ocorreu um erro durante a exclusão do registro')
+        feedbackToast('ERROR', error.message)
       })
   }
 

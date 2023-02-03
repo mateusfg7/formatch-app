@@ -16,7 +16,7 @@ import {
 import MaskedView from '@react-native-masked-view/masked-view'
 import * as Clipboard from 'expo-clipboard'
 import { Field } from './Field'
-import { infoToast } from '../../utils/infoToast'
+import { feedbackToast } from '../../utils/infoToast'
 
 interface Props {
   phone?: string
@@ -41,7 +41,7 @@ export const ProfessionalContact = ({
     const lowerTitle = title.toLowerCase()
     const parsedTitle = lowerTitle[0].toUpperCase() + lowerTitle.slice(1)
 
-    infoToast(`${parsedTitle} copiado!`)
+    feedbackToast('INFO', `${parsedTitle} copiado!`)
   }
 
   return (

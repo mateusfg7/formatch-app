@@ -2,12 +2,12 @@ import { ReactNode, createContext, useEffect, useState } from 'react'
 import * as AuthSession from 'expo-auth-session'
 import * as Google from 'expo-auth-session/providers/google'
 import constants from 'expo-constants'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
 import { api } from '../services/api'
 import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
-import { errorToast } from '../utils/errorToast'
-import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { useProfessional } from '../hooks/useProfessional'
+import { feedbackToast } from '../utils/infoToast'
 
 interface UserProps {
   name: string
@@ -63,7 +63,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       await getUserAsProfessional()
       setUser(parsedUserInfo.user)
     } catch (error) {
-      errorToast('Erro ao verificar usuário')
+      feedbackToast('ERROR', 'Erro ao verificar usuário')
     }
   }
 
@@ -73,7 +73,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       await promptAsync()
     } catch (error) {
       console.error(error)
-      errorToast('Erro ao authenticar usuário')
+      feedbackToast('ERROR', 'Erro ao authenticar usuário')
       throw error
     } finally {
       setIsUserLoading(false)
@@ -107,7 +107,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
       })
     } catch (error) {
       console.error(error)
-      errorToast('Erro ao criar usuário')
+      feedbackToast('ERROR', 'Erro ao criar usuário')
       throw error
     } finally {
       setIsUserLoading(false)

@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   HStack,
   Pressable,
@@ -21,6 +22,7 @@ import { developmentWarning } from '../../utils/developmentWarning'
 import { useTypedOptionsNavigation } from '../../utils/useTypedOptionsNavigation'
 
 import { useProfessional } from '../../hooks/useProfessional'
+import { feedbackToast } from '../../utils/infoToast'
 
 export function Options() {
   const { fontSizes } = useTheme()
@@ -88,6 +90,15 @@ export function Options() {
             </Text>
           </HStack>
         </Pressable>
+        <Button onPress={() => feedbackToast('INFO', 'This is a info')}>
+          Info
+        </Button>
+        <Button onPress={() => feedbackToast('WARNING', 'This is a warning')}>
+          Warning
+        </Button>
+        <Button onPress={() => feedbackToast('ERROR', 'This is a error')}>
+          Error
+        </Button>
       </VStack>
     </VStack>
   )

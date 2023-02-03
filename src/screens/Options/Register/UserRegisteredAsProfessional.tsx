@@ -22,7 +22,7 @@ import {
   ProfessionalContact,
   ProfessionalImage,
 } from '../../../components/ProfessionalInfo'
-import { infoToast } from '../../../utils/infoToast'
+import { feedbackToast } from '../../../utils/infoToast'
 import { ConfirmationModal } from '../../../components/ProfessionalInfo/ConfirmationModal'
 import { useProfessional } from '../../../hooks/useProfessional'
 
@@ -41,7 +41,7 @@ export function UserRegisteredAsProfesisonal() {
 
   function openVerificationModal() {
     if (isDeleting) {
-      infoToast('O registro esta sendo deletado, aguarde.')
+      feedbackToast('INFO', 'O registro esta sendo deletado, aguarde.')
       return
     } else {
       setIsModalOpen(true)
@@ -70,7 +70,10 @@ export function UserRegisteredAsProfesisonal() {
             <Field title='Estatística'>
               <Pressable
                 onPress={() =>
-                  infoToast(`Sua nota média é ${professionalData.averageRate}`)
+                  feedbackToast(
+                    'INFO',
+                    `Sua nota média é ${professionalData.averageRate}`
+                  )
                 }
               >
                 <HStack space='3' alignItems='center' mb='3'>
@@ -96,7 +99,8 @@ export function UserRegisteredAsProfesisonal() {
               </Pressable>
               <Pressable
                 onPress={() =>
-                  infoToast(
+                  feedbackToast(
+                    'INFO',
                     `${professionalData.savedCount} usuários salvaram este profissional em sua lista`
                   )
                 }
@@ -138,7 +142,7 @@ export function UserRegisteredAsProfesisonal() {
                 _pressed={{ opacity: 0.5 }}
                 onPress={async () => {
                   await Clipboard.setStringAsync(professionalData.code)
-                  infoToast(`Código copiado!`)
+                  feedbackToast('INFO', `Código copiado!`)
                 }}
               >
                 <Text color='complement.200'>{professionalData.code}</Text>
