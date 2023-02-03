@@ -22,7 +22,7 @@ import { developmentWarning } from '../../utils/developmentWarning'
 import { useTypedOptionsNavigation } from '../../utils/useTypedOptionsNavigation'
 
 import { useProfessional } from '../../hooks/useProfessional'
-import { feedbackToast } from '../../utils/infoToast'
+import { feedbackToast } from '../../utils/feedbackToast'
 
 export function Options() {
   const { fontSizes } = useTheme()

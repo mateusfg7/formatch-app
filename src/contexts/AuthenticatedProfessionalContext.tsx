@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from 'react'
 import { api } from '../services/api'
-import { feedbackToast } from '../utils/infoToast'
+import { feedbackToast } from '../utils/feedbackToast'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
 export interface ProfessionalContextProps {

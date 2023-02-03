@@ -16,7 +16,7 @@ import {
 import MaskedView from '@react-native-masked-view/masked-view'
 import * as Clipboard from 'expo-clipboard'
 import { Field } from './Field'
-import { feedbackToast } from '../../utils/infoToast'
+import { feedbackToast } from '../../utils/feedbackToast'
 
 interface Props {
   phone?: string

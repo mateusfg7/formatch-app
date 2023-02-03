@@ -7,7 +7,7 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { api } from '../services/api'
 import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
 import { useProfessional } from '../hooks/useProfessional'
-import { feedbackToast } from '../utils/infoToast'
+import { feedbackToast } from '../utils/feedbackToast'
 
 interface UserProps {
   name: string

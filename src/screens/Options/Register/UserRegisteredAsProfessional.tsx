@@ -22,7 +22,7 @@ import {
   ProfessionalContact,
   ProfessionalImage,
 } from '../../../components/ProfessionalInfo'
-import { feedbackToast } from '../../../utils/infoToast'
+import { feedbackToast } from '../../../utils/feedbackToast'
 import { ConfirmationModal } from '../../../components/ProfessionalInfo/ConfirmationModal'
 import { useProfessional } from '../../../hooks/useProfessional'
 
