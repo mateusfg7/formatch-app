@@ -1,13 +1,4 @@
-import {
-  Pressable,
-  Spinner,
-  Text,
-  Box,
-  Modal,
-  VStack,
-  HStack,
-} from 'native-base'
-import { useState } from 'react'
+import { Pressable, Text, Box, Modal, VStack, HStack } from 'native-base'
 
 interface Props {
   isOpen: boolean
@@ -16,12 +7,8 @@ interface Props {
 }
 
 export function ConfirmationModal({ isOpen, setIsOpen, action }: Props) {
-  const [isLoading, setIsLoading] = useState(false)
-
   function handleAction() {
-    setIsLoading(true)
     action()
-    setIsOpen(false)
   }
 
   return (
@@ -68,13 +55,9 @@ export function ConfirmationModal({ isOpen, setIsOpen, action }: Props) {
                 alignItems='center'
               >
                 <Box w='16' justifyContent='center' alignItems='center'>
-                  {isLoading ? (
-                    <Spinner color='white' />
-                  ) : (
-                    <Text color='white' fontSize='xl'>
-                      Deletar
-                    </Text>
-                  )}
+                  <Text color='white' fontSize='xl'>
+                    Deletar
+                  </Text>
                 </Box>
               </Pressable>
             </HStack>

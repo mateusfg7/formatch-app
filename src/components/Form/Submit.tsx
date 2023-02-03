@@ -50,7 +50,7 @@ export function Submit({
           fontSize='xl'
           fontFamily='bold'
         >
-          CADASTRAR
+          {isLoading ? 'CADASTRANDO' : 'CADASTRAR'}
         </Text>
       </HStack>
     </NativeBaseButton>

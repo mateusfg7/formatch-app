@@ -5,6 +5,7 @@ import {
   HStack,
   Pressable,
   ScrollView,
+  Spinner,
   Text,
   VStack,
   useTheme,
@@ -27,11 +28,24 @@ import { useProfessional } from '../../../hooks/useProfessional'
 
 export function UserRegisteredAsProfesisonal() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
   const { professionalData, deleteProfessional } = useProfessional()
   const { colors } = useTheme()
 
   async function handleDeleteProfessional() {
-    await deleteProfessional()
+    setIsDeleting(true)
+    setIsModalOpen(false)
+
+    await deleteProfessional().finally(() => setIsDeleting(false))
+  }
+
+  function openVerificationModal() {
+    if (isDeleting) {
+      infoToast('O registro esta sendo deletado, aguarde.')
+      return
+    } else {
+      setIsModalOpen(true)
+    }
   }
 
   return (
@@ -108,13 +122,16 @@ export function UserRegisteredAsProfesisonal() {
               borderColor='danger.700'
               bg='danger.100'
               _pressed={{
-                bg: 'danger.200',
+                bg: !isDeleting ? 'danger.200' : 'danger.100',
               }}
-              onPress={() => setIsModalOpen(true)}
+              onPress={() => openVerificationModal()}
             >
-              <Text color='danger.700' fontSize='xl'>
-                Deletar registro
-              </Text>
+              <HStack space='2'>
+                {isDeleting && <Spinner color='danger.700' />}
+                <Text color='danger.700' fontSize='xl'>
+                  {isDeleting ? 'Deletando registro' : 'Deletar registro'}
+                </Text>
+              </HStack>
             </Button>
             <Box alignItems='center'>
               <Pressable
