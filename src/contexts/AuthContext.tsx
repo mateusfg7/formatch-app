@@ -9,6 +9,7 @@ import { errorToast } from '../utils/errorToast'
 import AsyncStorage, {
   useAsyncStorage,
 } from '@react-native-async-storage/async-storage'
+import { useProfessional } from '../hooks/useProfessional'
 
 interface UserProps {
   name: string
@@ -35,6 +36,8 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<UserProps>({} as UserProps)
   const [isUserLoading, setIsUserLoading] = useState(false)
 
+  const { removeProfessionalData } = useProfessional()
+
   const [_request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: EXPO_CLIENT_ID,
     androidClientId: ANDROID_CLIENT_ID,
@@ -45,7 +48,7 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     scopes: ['profile', 'email'],
   })
 
-  const { getItem, setItem } = useAsyncStorage('@Formatch_user')
+  const { getItem, setItem, removeItem } = useAsyncStorage('@Formatch_user')
 
   async function checkUserOnStorage() {
     try {
@@ -79,10 +82,8 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   }
 
   function signOut() {
-    AsyncStorage.multiRemove([
-      '@Formatch_user',
-      '@Formatch_userAsProfessional',
-    ]).catch((error) => console.log(error))
+    removeProfessionalData()
+    removeItem()
     setUser({} as UserProps)
   }
 
