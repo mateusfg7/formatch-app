@@ -30,16 +30,16 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME} config={nativeBaseConfig}>
-      <AuthContextProvider>
-        <ProfessionalContextProvider>
+      <ProfessionalContextProvider>
+        <AuthContextProvider>
           <StatusBar
             barStyle='dark-content'
             backgroundColor='rgba(242, 245, 249, 0.8)'
             translucent
           />
           {fontsLoaded ? <Routes /> : <Loading />}
-        </ProfessionalContextProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </ProfessionalContextProvider>
     </NativeBaseProvider>
   )
 }
