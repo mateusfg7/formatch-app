@@ -45,3 +45,25 @@ jobs:
         run: yarn install
       - name: Build on EAS
         run: yarn build
+  submit:
+    name: Submit to Google Play Store
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: yarn
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: 5.x
+          eas-version: latest
+          token: ${{ secrets.EXPO_ACCESS_TOKEN }}
+      - name: Install dependencies
+        run: yarn install
+      - name: Submit with EAS Submit
+        run: yarn submit
