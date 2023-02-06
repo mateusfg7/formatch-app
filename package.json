@@ -7,8 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build": "npx eas-cli build -p android --non-interactive",
-    "build:preview": "npx eas-cli build -p android --profile preview --non-interactive",
+    "build": "npx eas-cli build --platform android --non-interactive",
+    "build:preview": "npx eas-cli build --platform android --profile preview --non-interactive",
+    "submit": "npx eas-cli submit --platform android --latest --verbose --non-interactive",
     "prepare": "husky install"
   },
   "dependencies": {
