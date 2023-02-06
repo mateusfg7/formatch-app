@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   HStack,
   Pressable,
@@ -89,15 +88,6 @@ export function Options() {
             </Text>
           </HStack>
         </Pressable>
-        <Button onPress={() => feedbackToast('INFO', 'This is a info')}>
-          Info
-        </Button>
-        <Button onPress={() => feedbackToast('WARNING', 'This is a warning')}>
-          Warning
-        </Button>
-        <Button onPress={() => feedbackToast('ERROR', 'This is a error')}>
-          Error
-        </Button>
       </VStack>
     </VStack>
   )
