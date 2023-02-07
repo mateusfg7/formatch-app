@@ -3,14 +3,15 @@ import { useTheme } from 'native-base'
 import { Article, MagnifyingGlass, GearSix } from 'phosphor-react-native'
 
 import { Feed } from '../screens/Feed'
-import { ListProfessionals } from '../screens/ListProfessionals'
 import { ArticleContent } from '../screens/ArticleContent'
 import { OptionsRoute } from './options.routes'
+import { SelectLocation } from '../screens/SearchProfessional/SelectLocation'
+import { ProfessionalRoute } from './professional.routes'
 
 export type TabNavigatorParamList = {
   feed: {}
   article: { slug: string }
-  'list-professionals': {}
+  professionals: {}
   options: {}
 }
 
@@ -55,8 +56,8 @@ export function AppRoutes() {
         }}
       />
       <Screen
-        name='list-professionals'
-        component={ListProfessionals}
+        name='professionals'
+        component={ProfessionalRoute}
         options={{
           tabBarIcon: ({ color }) => (
             <MagnifyingGlass color={color} size={35} weight='duotone' />
