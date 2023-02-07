@@ -1,8 +1,8 @@
 import {
   Buildings,
-  Cpu,
   Drop,
   IconProps,
+  Lightning,
   Mountains,
   PaintRoller,
   PencilSimpleLine,
@@ -19,7 +19,7 @@ export const occupationList: {
     occupation: 'Arquitetura',
     Icon: ({ ...props }) => <PencilSimpleLine {...props} />,
   },
-  { occupation: 'Elétrica', Icon: ({ ...props }) => <Cpu {...props} /> },
+  { occupation: 'Elétrica', Icon: ({ ...props }) => <Lightning {...props} /> },
   {
     occupation: 'Engenharia Civil',
     Icon: ({ ...props }) => <Buildings {...props} />,
