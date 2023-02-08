@@ -10,7 +10,7 @@ export function ArticleCard({ article }: Props) {
   const { navigate } = useTypedNavigation()
 
   function handleClick() {
-    navigate('article', { slug: article.slug })
+    navigate('article', { article })
   }
 
   return (
@@ -49,43 +49,32 @@ export function ArticleCard({ article }: Props) {
                       }
                 }
               >
-                {article.AdMeta ? (
-                  <HStack alignItems='center' justifyContent='space-between'>
-                    <Text
-                      fontFamily='bold'
-                      fontSize='xl'
-                      color='background.200'
-                      flex={1}
-                    >
-                      {article.title}
-                    </Text>
+                <HStack
+                  py='2'
+                  alignItems='center'
+                  justifyContent='space-between'
+                >
+                  <Text
+                    fontFamily={article.AdMeta ? 'bold' : 'regular'}
+                    fontSize='xl'
+                    color='background.200'
+                    flex={1}
+                  >
+                    {article.title}
+                  </Text>
+                  {article.AdMeta && (
                     <Image
                       source={{
                         uri: article.AdMeta.logo_url,
                       }}
-                      alt='testdsadsaasdasdsa'
+                      alt=''
                       size='md'
                       h='20'
                       w='24'
                       resizeMode='contain'
                     />
-                  </HStack>
-                ) : (
-                  <HStack
-                    h='20'
-                    alignItems='center'
-                    justifyContent='space-between'
-                  >
-                    <Text
-                      fontFamily='regular'
-                      fontSize='xl'
-                      color='background.200'
-                      flex={1}
-                    >
-                      {article.title}
-                    </Text>
-                  </HStack>
-                )}
+                  )}
+                </HStack>
               </Box>
             </ImageBackground>
           </Box>

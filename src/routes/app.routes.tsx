@@ -10,7 +10,7 @@ import { ProfessionalRoute } from './professional.routes'
 
 export type TabNavigatorParamList = {
   feed: {}
-  article: { slug: string }
+  article: { article: ArticleData }
   professionals: {}
   options: {}
 }
