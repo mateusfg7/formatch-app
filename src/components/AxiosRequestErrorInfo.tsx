@@ -7,9 +7,11 @@ import Error from '../assets/error.svg'
 
 export function AxiosRequestErrorInfo({ error }: { error: AxiosError }) {
   return (
-    <Box>
-      <Error width='200' height='200' />
-      <Text selectable fontSize='xl' color='error.900'>
+    <Box alignItems='center'>
+      <Box opacity='0.7'>
+        <Error width='200' height='200' />
+      </Box>
+      <Text selectable fontSize='xl' color='error.900' bold>
         Erro {error.response.status}
       </Text>
       <HStack py='3' space='3'>
