@@ -9,19 +9,6 @@ import { AxiosError } from 'axios'
 import { feedbackToast } from '../utils/feedbackToast'
 import { AxiosRequestErrorInfo } from './AxiosRequestErrorInfo'
 
-interface ArticleData {
-  title: string
-  slug: string
-  banner_url: string
-  content: string
-  createdAt: string
-  AdMeta?: {
-    name: string
-    logo_url: string
-    website_url: string
-  }
-}
-
 export function ArticleList() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<AxiosError | undefined>(undefined)
