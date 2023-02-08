@@ -19,8 +19,6 @@ import {
   WhatsappLogo,
 } from 'phosphor-react-native'
 import { AxiosError } from 'axios'
-import * as Device from 'expo-device'
-import * as Application from 'expo-application'
 
 import { api } from '../../services/api'
 
@@ -30,8 +28,8 @@ import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
 
-import Error from '../../assets/error.svg'
 import HouseSearch from '../../assets/house-search.svg'
+import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
 
 interface ProfessionalData {
   averageRate: number
@@ -100,34 +98,7 @@ export function ProfessionalList() {
       )}
       {!isLoading && error && (
         <Center mb='24' px='5'>
-          <Error width='200' height='200' />
-          <Text selectable fontSize='xl' color='error.900'>
-            Erro {error.response.status}
-          </Text>
-          <HStack py='3' space='3'>
-            <VStack space='1' flex='1' alignItems='flex-end'>
-              <Text selectable bold>
-                Código
-              </Text>
-
-              <Text selectable>Dispositivo</Text>
-              <Text selectable>Marca</Text>
-              <Text selectable>SO</Text>
-              <Text selectable>Versão do App</Text>
-            </VStack>
-            <VStack space='1' flex='1' alignItems='flex-start'>
-              <Text selectable bold>
-                {error.code}
-              </Text>
-
-              <Text selectable>{Device.modelName}</Text>
-              <Text selectable>{Device.brand}</Text>
-              <Text selectable>
-                {Device.osName} {Device.osVersion}
-              </Text>
-              <Text selectable>{Application.nativeApplicationVersion}</Text>
-            </VStack>
-          </HStack>
+          <AxiosRequestErrorInfo error={error} />
           <HStack py='2'>
             <Text selectable bold>
               {data.service} - {data.filter.city}, {data.filter.uf}
