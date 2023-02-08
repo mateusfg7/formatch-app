@@ -46,9 +46,17 @@ export function Header({
           <EmptyBoxSpace />
         )}
         {title ? (
-          <Text color='complement.500' fontFamily='bold' fontSize='md' ml='4'>
-            {title}
-          </Text>
+          <Box flex='1'>
+            <Text
+              color='complement.500'
+              fontFamily='bold'
+              fontSize='md'
+              ml='4'
+              isTruncated
+            >
+              {title}
+            </Text>
+          </Box>
         ) : (
           <>
             <EmptyBoxSpace />
