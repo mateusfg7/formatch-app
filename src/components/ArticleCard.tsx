@@ -2,22 +2,28 @@ import { Box, HStack, Image, Pressable, Text } from 'native-base'
 import { ImageBackground } from 'react-native'
 import { useTypedNavigation } from '../utils/useTypedNavigation'
 
-interface Props {
+interface ArticleData {
   title: string
   slug: string
-  imageBannerUrl: string
-  adMeta?: {
-    adName: string
-    adLogoUrl: string
-    adWebsiteUrl: string
+  banner_url: string
+  content: string
+  createdAt: string
+  AdMeta?: {
+    name: string
+    logo_url: string
+    website_url: string
   }
 }
 
-export function ArticleCard({ title, slug, imageBannerUrl, adMeta }: Props) {
+interface Props {
+  article: ArticleData
+}
+
+export function ArticleCard({ article }: Props) {
   const { navigate } = useTypedNavigation()
 
   function handleClick() {
-    navigate('article', { slug })
+    navigate('article', { slug: article.slug })
   }
 
   return (
@@ -25,23 +31,18 @@ export function ArticleCard({ title, slug, imageBannerUrl, adMeta }: Props) {
       {({ isPressed }) => {
         return (
           <Box
-            h='40'
             borderRadius='3xl'
             overflow='hidden'
             mb='5'
             shadow={isPressed ? '1' : '9'}
           >
             <ImageBackground
-              source={{ uri: imageBannerUrl }}
+              source={{ uri: article.banner_url }}
               resizeMode='cover'
-              style={{
-                height: '100%',
-                width: '100%',
-              }}
             >
               <Box
-                h='full'
                 px='3'
+                pt='16'
                 justifyContent='flex-end'
                 bg={
                   isPressed
@@ -55,31 +56,27 @@ export function ArticleCard({ title, slug, imageBannerUrl, adMeta }: Props) {
                     : {
                         linearGradient: {
                           colors: ['transparent', 'complement.500'],
-                          start: [0, 0],
+                          start: [0, 0.3],
                           end: [0, 1.2],
                         },
                       }
                 }
               >
-                {adMeta ? (
-                  <HStack
-                    h='20'
-                    alignItems='center'
-                    justifyContent='space-between'
-                  >
+                {article.AdMeta ? (
+                  <HStack alignItems='center' justifyContent='space-between'>
                     <Text
                       fontFamily='bold'
                       fontSize='xl'
                       color='background.200'
                       flex={1}
                     >
-                      {title}
+                      {article.title}
                     </Text>
                     <Image
                       source={{
-                        uri: adMeta.adLogoUrl,
+                        uri: article.AdMeta.logo_url,
                       }}
-                      alt='mateusfg7'
+                      alt='testdsadsaasdasdsa'
                       size='md'
                       h='20'
                       w='24'
@@ -98,7 +95,7 @@ export function ArticleCard({ title, slug, imageBannerUrl, adMeta }: Props) {
                       color='background.200'
                       flex={1}
                     >
-                      {title}
+                      {article.title}
                     </Text>
                   </HStack>
                 )}
