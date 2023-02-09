@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Pressable, Text, VStack, useTheme } from 'native-base'
 import { ArrowRight } from 'phosphor-react-native'
 
-import { useTypedProfessionalNavigation } from '../../utils/useTypedProfessionalNavigation'
+import { professionalNavigation } from '../../utils/typedNavigation'
 import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 
 import { Header } from '../../components/Header'
@@ -18,7 +18,7 @@ export function SelectLocation() {
 
   const { sizes, colors } = useTheme()
 
-  const navigator = useTypedProfessionalNavigation()
+  const navigator = professionalNavigation()
 
   function handleSelectedState(state: State) {
     setSelectedState(state)

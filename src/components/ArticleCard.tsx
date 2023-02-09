@@ -1,13 +1,13 @@
 import { Box, HStack, Image, Pressable, Text } from 'native-base'
 import { ImageBackground } from 'react-native'
-import { useTypedFeedNavigation } from '../utils/useTypedFeedNavigation'
+import { feedNavigation } from '../utils/typedNavigation'
 
 interface Props {
   article: ArticleData
 }
 
 export function ArticleCard({ article }: Props) {
-  const { navigate } = useTypedFeedNavigation()
+  const { navigate } = feedNavigation()
 
   function handleClick() {
     navigate('feed.article', { article })

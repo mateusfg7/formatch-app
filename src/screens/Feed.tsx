@@ -1,7 +1,7 @@
 import { ScrollView, VStack } from 'native-base'
+
 import { Header } from '../components/Header'
 import { Title } from '../components/Title'
-
 import { ArticleList } from '../components/ArticleList'
 
 export function Feed() {

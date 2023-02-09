@@ -11,7 +11,7 @@ import {
 import { CaretRight } from 'phosphor-react-native'
 
 import { occupationList } from '../../utils/occupationList'
-import { useTypedProfessionalNavigation } from '../../utils/useTypedProfessionalNavigation'
+import { professionalNavigation } from '../../utils/typedNavigation'
 import { feedbackToast } from '../../utils/feedbackToast'
 
 import { useSearchProfessional } from '../../hooks/useSearchProfessional'
@@ -24,7 +24,7 @@ export function SelectService() {
 
   const { data, setService } = useSearchProfessional()
 
-  const navigation = useTypedProfessionalNavigation()
+  const navigation = professionalNavigation()
 
   function handleNavigate(service: string) {
     if (!data.filter.city && !data.filter.uf) {

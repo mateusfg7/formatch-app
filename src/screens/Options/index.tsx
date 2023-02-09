@@ -18,7 +18,7 @@ import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
 
 import { feedbackToast } from '../../utils/feedbackToast'
-import { useTypedOptionsNavigation } from '../../utils/useTypedOptionsNavigation'
+import { optionsNavigation } from '../../utils/typedNavigation'
 
 import { useProfessional } from '../../hooks/useProfessional'
 
@@ -27,7 +27,7 @@ export function Options() {
 
   const { professionalData } = useProfessional()
 
-  const { navigate } = useTypedOptionsNavigation()
+  const { navigate } = optionsNavigation()
   return (
     <VStack flex={1} backgroundColor='background.500'>
       <Header />
