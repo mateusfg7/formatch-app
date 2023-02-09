@@ -2,15 +2,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTheme } from 'native-base'
 import { Article, MagnifyingGlass, GearSix } from 'phosphor-react-native'
 
-import { Feed } from '../screens/Feed'
-import { ArticleContent } from '../screens/ArticleContent'
-import { OptionsRoute } from './options.routes'
-import { SelectLocation } from '../screens/SearchProfessional/SelectLocation'
+import { FeedRoute } from './feed.routes'
 import { ProfessionalRoute } from './professional.routes'
+import { OptionsRoute } from './options.routes'
 
 export type TabNavigatorParamList = {
   feed: {}
-  article: { article: ArticleData }
   professionals: {}
   options: {}
 }
@@ -41,18 +38,11 @@ export function AppRoutes() {
     >
       <Screen
         name='feed'
-        component={Feed}
+        component={FeedRoute}
         options={{
           tabBarIcon: ({ color }) => (
             <Article color={color} size={35} weight='duotone' />
           ),
-        }}
-      />
-      <Screen
-        name='article'
-        component={ArticleContent}
-        options={{
-          tabBarButton: () => null,
         }}
       />
       <Screen

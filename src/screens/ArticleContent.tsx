@@ -28,7 +28,7 @@ export function ArticleContent({ route }: Props) {
     <VStack flex={1} backgroundColor='background.500'>
       <Header
         showBackButton
-        navigateToScreen='feed'
+        navigateToScreen='feed.home'
         title={scrollPosition >= 63 ? article.title : ''}
       />
       <ScrollView onScroll={handleScroll}>

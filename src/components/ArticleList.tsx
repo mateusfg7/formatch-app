@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Box, Center, Spinner, Text, useTheme, VStack } from 'native-base'
+import { AxiosError } from 'axios'
 
+import { api } from '../services/api'
+import { feedbackToast } from '../utils/feedbackToast'
+
+import { AxiosRequestErrorInfo } from './AxiosRequestErrorInfo'
 import { ArticleCard } from './ArticleCard'
 
 import FileSearchingRafiki from '../assets/file-searching-rafiki.svg'
-import { api } from '../services/api'
-import { AxiosError } from 'axios'
-import { feedbackToast } from '../utils/feedbackToast'
-import { AxiosRequestErrorInfo } from './AxiosRequestErrorInfo'
 
 export function ArticleList() {
   const [isLoading, setIsLoading] = useState(true)
