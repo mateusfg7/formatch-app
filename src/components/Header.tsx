@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import Constants from 'expo-constants'
 import { Box, HStack, Text, useTheme, VStack } from 'native-base'
 import { ArrowLeft } from 'phosphor-react-native'
@@ -8,14 +9,20 @@ interface Props {
   showBackButton?: boolean
   navigateToScreen?: string
   title?: string
+  ActionButton?: () => JSX.Element
 }
 
 export function Header({
   showBackButton = false,
   navigateToScreen,
   title,
+  ActionButton,
 }: Props) {
-  const EmptyBoxSpace = () => <Box w='8' h='8' />
+  const EmptyBoxSpace = ({ children }: { children?: ReactNode }) => (
+    <Box w='8' h='8'>
+      {children}
+    </Box>
+  )
 
   const { sizes, colors } = useTheme()
   const { navigate, goBack } = useNavigation()
@@ -60,7 +67,11 @@ export function Header({
         ) : (
           <>
             <EmptyBoxSpace />
-            <EmptyBoxSpace />
+            {ActionButton ? (
+              <EmptyBoxSpace>{<ActionButton />}</EmptyBoxSpace>
+            ) : (
+              <EmptyBoxSpace />
+            )}
           </>
         )}
       </HStack>
