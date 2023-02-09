@@ -23,13 +23,14 @@ import { AxiosError } from 'axios'
 import { api } from '../../services/api'
 
 import { feedbackToast } from '../../utils/feedbackToast'
+import { professionalNavigation } from '../../utils/typedNavigation'
 import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
+import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
 
 import HouseSearch from '../../assets/house-search.svg'
-import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
 
 interface ProfessionalData {
   averageRate: number
@@ -55,6 +56,7 @@ export function ProfessionalList() {
   >(undefined)
 
   const { data } = useSearchProfessional()
+  const { navigate } = professionalNavigation()
 
   const { colors } = useTheme()
 
@@ -122,7 +124,11 @@ export function ProfessionalList() {
               {professionalList.map((professional) => (
                 <Pressable
                   key={professional.name}
-                  onPress={() => feedbackToast('WARNING', 'Em desenvolvimento')}
+                  onPress={() =>
+                    navigate('professional.details', {
+                      code: professional.code,
+                    })
+                  }
                 >
                   <HStack
                     bg='white'
