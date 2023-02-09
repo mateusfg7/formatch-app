@@ -62,7 +62,7 @@ export function Options() {
           <Divider />
         </Box>
         <Pressable
-          onPress={() => feedbackToast('WARNING', 'Em desenvolvimento')}
+          onPress={() => navigate('options.saved')}
           _pressed={{ opacity: 0.6 }}
         >
           <HStack alignItems='center'>
