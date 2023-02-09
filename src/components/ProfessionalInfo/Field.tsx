@@ -3,14 +3,22 @@ import { ReactNode } from 'react'
 
 interface FieldProps {
   title: string
+  notes?: string
   children: ReactNode
 }
 
-export const Field = ({ title, children }: FieldProps) => (
+export const Field = ({ title, notes, children }: FieldProps) => (
   <VStack>
-    <Text fontSize='2xl' color='complement.300' mb='3'>
-      {title}
-    </Text>
+    <Box mb='4'>
+      <Text fontSize='2xl' color='complement.300'>
+        {title}
+      </Text>
+      {notes && (
+        <Text fontSize='sm' color='complement.200'>
+          {notes}
+        </Text>
+      )}
+    </Box>
     <Box>{children}</Box>
   </VStack>
 )

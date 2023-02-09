@@ -45,7 +45,7 @@ export const ProfessionalContact = ({
   }
 
   return (
-    <Field title='Contato'>
+    <Field title='Contato' notes='Clique para copiar'>
       <VStack space='3'>
         {(phone || email) && (
           <VStack space='2'>
@@ -77,7 +77,11 @@ export const ProfessionalContact = ({
                     </Box>
                     <Text fontSize='lg'>Email</Text>
                   </HStack>
-                  <Text fontSize='lg'>{email}</Text>
+                  <Box flex='1' alignItems='flex-end'>
+                    <Text fontSize='lg' isTruncated>
+                      {email}
+                    </Text>
+                  </Box>
                 </HStack>
               </Pressable>
             )}
