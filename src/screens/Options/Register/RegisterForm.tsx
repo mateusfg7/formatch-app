@@ -24,18 +24,92 @@ import {
 
 import { useProfessional } from '../../../hooks/useProfessional'
 
-const registerSchema = yup.object({
-  imageUri: yup.string().required('Selecione uma imagem de perfil'),
-  name: yup.string().required('Informe seu nome'),
-  phone: yup.string().length(15, 'Número inválido').optional(),
-  email: yup.string().email('Email inválido').optional(),
-  stateUf: yup.string().required('Selecione seu estado'),
-  city: yup.string().required('Selecione sua cidade'),
-  occupation: yup.string().required('Selecione pelo menos uma área de atuação'),
-  bio: yup.string().required('Conte sobre você e seus projetos'),
-  whatsapp: yup.string().length(15, 'Número inválido').optional(),
-  instagram: yup.string().optional(),
-})
+const registerSchema = yup.object().shape(
+  {
+    imageUri: yup.string().required('Selecione uma imagem de perfil'),
+    name: yup.string().required('Informe seu nome'),
+    phone: yup.string().when('phone', (value) => {
+      if (value) {
+        return yup.string().length(15, 'Número inválido')
+      } else {
+        return yup
+          .string()
+          .transform((value, originalValue) => {
+            // Convert empty values to undefined
+            if (!value) {
+              return undefined
+            }
+            return originalValue
+          })
+          .nullable()
+          .optional()
+      }
+    }),
+    email: yup.string().when('email', (value) => {
+      if (value) {
+        return yup.string().email('Email inválido')
+      } else {
+        return yup
+          .string()
+          .transform((value, originalValue) => {
+            // Convert empty values to undefined
+            if (!value) {
+              return undefined
+            }
+            return originalValue
+          })
+          .nullable()
+          .optional()
+      }
+    }),
+    stateUf: yup.string().required('Selecione seu estado'),
+    city: yup.string().required('Selecione sua cidade'),
+    occupation: yup
+      .string()
+      .required('Selecione pelo menos uma área de atuação'),
+    bio: yup.string().required('Conte sobre você e seus projetos'),
+    whatsapp: yup.string().when('whatsapp', (value) => {
+      if (value) {
+        return yup.string().length(15, 'Número inválido')
+      } else {
+        return yup
+          .string()
+          .transform((value, originalValue) => {
+            // Convert empty values to undefined
+            if (!value) {
+              return undefined
+            }
+            return originalValue
+          })
+          .nullable()
+          .optional()
+      }
+    }),
+    instagram: yup.string().when('instagram', (value) => {
+      if (value) {
+        return yup.string()
+      } else {
+        return yup
+          .string()
+          .transform((value, originalValue) => {
+            // Convert empty values to undefined
+            if (!value) {
+              return undefined
+            }
+            return originalValue
+          })
+          .nullable()
+          .optional()
+      }
+    }),
+  },
+  [
+    ['phone', 'phone'],
+    ['email', 'email'],
+    ['instagram', 'instagram'],
+    ['whatsapp', 'whatsapp'],
+  ]
+)
 
 export function RegisterForm() {
   const {
