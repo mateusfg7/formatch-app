@@ -25,7 +25,7 @@ import { useProfessional } from '../../hooks/useProfessional'
 export function Options() {
   const { fontSizes } = useTheme()
 
-  const { professionalData } = useProfessional()
+  const { professionalData, errorOnProfessionalRequest } = useProfessional()
 
   const { navigate } = optionsNavigation()
   return (
@@ -72,22 +72,26 @@ export function Options() {
             <Text fontSize='2xl'>Profissionais salvos</Text>
           </HStack>
         </Pressable>
-        <Box px='9' my='7'>
-          <Divider />
-        </Box>
-        <Pressable
-          onPress={() => navigate('options.register')}
-          _pressed={{ opacity: 0.6 }}
-        >
-          <HStack alignItems='center'>
-            <Box mr='4'>
-              <Briefcase weight='bold' size={fontSizes['2xl']} />
+        {!errorOnProfessionalRequest && (
+          <>
+            <Box px='9' my='7'>
+              <Divider />
             </Box>
-            <Text fontSize='2xl'>
-              {professionalData.code ? 'Ver cadastro' : 'Se cadastrar'}
-            </Text>
-          </HStack>
-        </Pressable>
+            <Pressable
+              onPress={() => navigate('options.register')}
+              _pressed={{ opacity: 0.6 }}
+            >
+              <HStack alignItems='center'>
+                <Box mr='4'>
+                  <Briefcase weight='bold' size={fontSizes['2xl']} />
+                </Box>
+                <Text fontSize='2xl'>
+                  {professionalData.code ? 'Ver cadastro' : 'Se cadastrar'}
+                </Text>
+              </HStack>
+            </Pressable>
+          </>
+        )}
       </VStack>
     </VStack>
   )

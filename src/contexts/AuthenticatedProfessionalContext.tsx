@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from 'react'
 import { api } from '../services/api'
 import { feedbackToast } from '../utils/feedbackToast'
+import { AxiosError } from 'axios'
 
 export interface ProfessionalContextProps {
   professionalData: AuthenticatedProfessionalData
@@ -11,6 +12,7 @@ export interface ProfessionalContextProps {
   ): Promise<void>
   deleteProfessional: () => Promise<void>
   removeProfessionalData: () => void
+  errorOnProfessionalRequest: boolean
 }
 
 export const ProfessionalContext = createContext({} as ProfessionalContextProps)
@@ -24,16 +26,23 @@ export function ProfessionalContextProvider({
 }: ProfessionalProviderProps) {
   const [professionalData, setProfessionalData] =
     useState<AuthenticatedProfessionalData>({} as AuthenticatedProfessionalData)
+  const [errorOnProfessionalRequest, setErrorOnProfessionalRequest] =
+    useState(false)
 
   async function getUserAsProfessional() {
     await api
       .get<AuthenticatedProfessionalData>('professional/me')
       .then((response) => {
         setProfessionalData(response.data)
+        setErrorOnProfessionalRequest(false)
       })
-      .catch((error) => {
+      .catch((error: AxiosError) => {
         console.log(error.status)
-        feedbackToast('ERROR', 'Erro ao buscar informações do profissional')
+        setErrorOnProfessionalRequest(false)
+        if (error.response.status !== 404) {
+          feedbackToast('ERROR', 'Erro ao buscar informações do profissional')
+          setErrorOnProfessionalRequest(true)
+        }
       })
   }
 
@@ -118,6 +127,7 @@ export function ProfessionalContextProvider({
         removeProfessionalData,
         deleteProfessional,
         createProfessional,
+        errorOnProfessionalRequest,
       }}
     >
       {children}
