@@ -13,7 +13,7 @@ import ActionSheet, {
   SheetManager,
   ActionSheetRef,
 } from 'react-native-actions-sheet'
-import { useTheme } from 'native-base'
+import { Box, Divider, useTheme } from 'native-base'
 
 type RenderItemProp<T> = {
   renderListItem?: (item: T, index: number) => React.ReactElement
@@ -67,8 +67,6 @@ export const Picker = <T,>({
     <TouchableOpacity
       style={{
         paddingVertical: 20,
-        borderBottomWidth: 0.5,
-        borderColor: '#CDD4D9',
       }}
       onPress={() => {
         itemOnPress(item)
@@ -210,6 +208,14 @@ export const Picker = <T,>({
             return <Item item={item} index={index} />
           }}
           keyExtractor={keyExtractor}
+          ItemSeparatorComponent={() => (
+            <Box
+              w='full'
+              h='1'
+              borderBottomWidth={0.5}
+              borderBottomColor='#CDD4D9'
+            />
+          )}
         />
       </SafeAreaView>
     </ActionSheet>
