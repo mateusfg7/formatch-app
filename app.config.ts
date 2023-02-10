@@ -26,7 +26,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundleIdentifier: 'com.mateusfg7.formatch',
   },
   android: {
-    versionCode: 6,
+    versionCode: packageConfig.versionCode,
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#FA5D14',
