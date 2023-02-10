@@ -5,13 +5,14 @@ import {
   Spinner,
   Text,
   Box,
+  IBoxProps,
   VStack,
   Center,
   useTheme,
 } from 'native-base'
 import { CaretDown, WarningCircle } from 'phosphor-react-native'
-import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box'
 import { Picker, onOpen } from '../Picker'
+import { filterString } from '../../utils/filterString'
 
 export interface State {
   id: number
@@ -19,7 +20,7 @@ export interface State {
   sigla?: string
 }
 
-interface Props extends InterfaceBoxProps {
+interface Props extends IBoxProps {
   errorMessage?: string
   setStateAction: (...event: any[]) => void
   setUfState: (value: string) => void
@@ -70,9 +71,12 @@ export function SelectStateForm({
 
   const filteredData = useMemo(() => {
     if (stateList && stateList.length > 0) {
-      return stateList.filter((item) =>
-        item.nome.toLowerCase().includes(query.toLowerCase())
-      )
+      return stateList.filter((item) => {
+        const currentState = filterString(item.nome)
+        const targetState = filterString(query)
+
+        return currentState.includes(targetState)
+      })
     }
   }, [stateList, query])
 

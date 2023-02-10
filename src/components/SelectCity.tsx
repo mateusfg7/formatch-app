@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
-import { HStack, Pressable, Spinner, Text, Box } from 'native-base'
+import { HStack, Pressable, Spinner, Text, Box, IBoxProps } from 'native-base'
 import { Picker, onOpen } from './Picker'
 import { CaretDown } from 'phosphor-react-native'
-import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box'
+
+import { filterString } from '../utils/filterString'
 
 export interface City {
   id: number
   nome: string
 }
 
-interface Props extends InterfaceBoxProps {
+interface Props extends IBoxProps {
   selected: City
   setSelected: React.Dispatch<React.SetStateAction<City>>
   stateUf: string
@@ -42,11 +43,12 @@ export function SelectCity({
 
   const filteredData = useMemo(() => {
     if (cityList && cityList.length > 0) {
-      return cityList.filter((item) =>
-        item.nome
-          .toLocaleLowerCase('en')
-          .includes(query.toLocaleLowerCase('en'))
-      )
+      return cityList.filter((item) => {
+        const currentCity = filterString(item.nome)
+        const targetCity = filterString(query)
+
+        return currentCity.includes(targetCity)
+      })
     }
   }, [cityList, query])
 

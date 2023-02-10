@@ -8,17 +8,19 @@ import {
   VStack,
   Center,
   useTheme,
+  IBoxProps,
 } from 'native-base'
 import { CaretDown, WarningCircle } from 'phosphor-react-native'
-import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box'
 import { Picker, onOpen } from '../Picker'
+
+import { filterString } from '../../utils/filterString'
 
 export interface City {
   id: number
   nome: string
 }
 
-interface Props extends InterfaceBoxProps {
+interface Props extends IBoxProps {
   errorMessage?: string
   setCityAction: (...event: any[]) => void
   stateUf?: string
@@ -68,9 +70,12 @@ export function SelectCityForm({
 
   const filteredData = useMemo(() => {
     if (cityList && cityList.length > 0) {
-      return cityList.filter((item) =>
-        item.nome.toLowerCase().includes(query.toLowerCase())
-      )
+      return cityList.filter((item) => {
+        const currentCity = filterString(item.nome)
+        const targetCity = filterString(query)
+
+        return currentCity.includes(targetCity)
+      })
     }
   }, [cityList, query])
 
