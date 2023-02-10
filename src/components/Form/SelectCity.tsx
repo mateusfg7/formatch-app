@@ -51,7 +51,7 @@ export function SelectCityForm({
   }
 
   function handleOpenSelector() {
-    if (cityList && !isLoading) onOpen('city')
+    if (cityList && !isLoading) onOpen('cityOnForm')
   }
 
   async function fetchCity() {
@@ -135,7 +135,7 @@ export function SelectCityForm({
         </HStack>
       </Pressable>
       <Picker
-        id='city'
+        id='cityOnForm'
         data={filteredData}
         inputValue={query}
         label='Selecione seu município'

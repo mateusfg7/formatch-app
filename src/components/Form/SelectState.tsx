@@ -52,7 +52,7 @@ export function SelectStateForm({
   }
 
   function handleOpenSelector() {
-    if (stateList && !isLoading) onOpen('state')
+    if (stateList && !isLoading) onOpen('stateOnForm')
   }
 
   async function fetchStates() {
@@ -136,7 +136,7 @@ export function SelectStateForm({
         </HStack>
       </Pressable>
       <Picker
-        id='state'
+        id='stateOnForm'
         data={filteredData}
         inputValue={query}
         label='Selecione seu estado'
