@@ -1,12 +1,10 @@
 import { ReactNode, createContext, useState } from 'react'
 import { api } from '../services/api'
 import { feedbackToast } from '../utils/feedbackToast'
-import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
 export interface ProfessionalContextProps {
   professionalData: AuthenticatedProfessionalData
   getUserAsProfessional: () => Promise<void>
-  getUserAsProfessionalFromServer: () => Promise<void>
   createProfessional(
     data: FormDataProps,
     setIsRequesting?: (v: boolean) => void
@@ -27,36 +25,16 @@ export function ProfessionalContextProvider({
   const [professionalData, setProfessionalData] =
     useState<AuthenticatedProfessionalData>({} as AuthenticatedProfessionalData)
 
-  const { getItem, setItem, removeItem } = useAsyncStorage(
-    '@Formatch_userAsProfessional'
-  )
-
-  async function getUserAsProfessionalFromServer() {
+  async function getUserAsProfessional() {
     await api
       .get<AuthenticatedProfessionalData>('professional/me')
       .then((response) => {
         setProfessionalData(response.data)
-        setItem(JSON.stringify(response.data))
       })
       .catch((error) => {
         console.log(error.status)
         feedbackToast('ERROR', 'Erro ao buscar informações do profissional')
       })
-  }
-
-  async function getUserAsProfessional() {
-    try {
-      const professionalOnStorage = await getItem()
-      if (professionalOnStorage) {
-        const parsedProfessionalInfo = JSON.parse(professionalOnStorage)
-        setProfessionalData(parsedProfessionalInfo)
-        return
-      }
-    } catch (error) {
-      console.log(error)
-    }
-
-    getUserAsProfessionalFromServer()
   }
 
   async function createProfessional(
@@ -96,7 +74,6 @@ export function ProfessionalContextProvider({
       .then((response) => {
         feedbackToast('INFO', 'Profissional registrado com sucesso')
         setProfessionalData(response.data)
-        setItem(JSON.stringify(response.data))
       })
       .catch((error) => {
         console.log(error)
@@ -110,7 +87,6 @@ export function ProfessionalContextProvider({
   }
 
   function removeProfessionalData() {
-    removeItem()
     setProfessionalData({} as AuthenticatedProfessionalData)
   }
 
@@ -139,7 +115,6 @@ export function ProfessionalContextProvider({
       value={{
         professionalData,
         getUserAsProfessional,
-        getUserAsProfessionalFromServer,
         removeProfessionalData,
         deleteProfessional,
         createProfessional,

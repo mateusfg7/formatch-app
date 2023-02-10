@@ -32,11 +32,8 @@ export function UserRegisteredAsProfesisonal() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
 
-  const {
-    professionalData,
-    deleteProfessional,
-    getUserAsProfessionalFromServer,
-  } = useProfessional()
+  const { professionalData, deleteProfessional, getUserAsProfessional } =
+    useProfessional()
   const { colors } = useTheme()
 
   async function handleDeleteProfessional() {
@@ -57,7 +54,7 @@ export function UserRegisteredAsProfesisonal() {
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true)
-    await getUserAsProfessionalFromServer().finally(() => setRefreshing(false))
+    await getUserAsProfessional().finally(() => setRefreshing(false))
   }, [])
 
   return (
