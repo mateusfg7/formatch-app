@@ -6,6 +6,7 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 export interface ProfessionalContextProps {
   professionalData: AuthenticatedProfessionalData
   getUserAsProfessional: () => Promise<void>
+  getUserAsProfessionalFromServer: () => Promise<void>
   createProfessional(
     data: FormDataProps,
     setIsRequesting?: (v: boolean) => void
@@ -30,6 +31,19 @@ export function ProfessionalContextProvider({
     '@Formatch_userAsProfessional'
   )
 
+  async function getUserAsProfessionalFromServer() {
+    await api
+      .get<AuthenticatedProfessionalData>('professional/me')
+      .then((response) => {
+        setProfessionalData(response.data)
+        setItem(JSON.stringify(response.data))
+      })
+      .catch((error) => {
+        console.log(error.status)
+        feedbackToast('ERROR', 'Erro ao buscar informações do profissional')
+      })
+  }
+
   async function getUserAsProfessional() {
     try {
       const professionalOnStorage = await getItem()
@@ -42,15 +56,7 @@ export function ProfessionalContextProvider({
       console.log(error)
     }
 
-    await api
-      .get<AuthenticatedProfessionalData>('professional/me')
-      .then((response) => {
-        setProfessionalData(response.data)
-        setItem(JSON.stringify(response.data))
-      })
-      .catch((error) => {
-        console.log(error.status)
-      })
+    getUserAsProfessionalFromServer()
   }
 
   async function createProfessional(
@@ -133,6 +139,7 @@ export function ProfessionalContextProvider({
       value={{
         professionalData,
         getUserAsProfessional,
+        getUserAsProfessionalFromServer,
         removeProfessionalData,
         deleteProfessional,
         createProfessional,

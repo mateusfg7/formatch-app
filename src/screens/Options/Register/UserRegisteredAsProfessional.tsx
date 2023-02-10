@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import {
   Box,
   Button,
@@ -25,11 +25,18 @@ import {
 import { feedbackToast } from '../../../utils/feedbackToast'
 import { ConfirmationModal } from '../../../components/ProfessionalInfo/ConfirmationModal'
 import { useProfessional } from '../../../hooks/useProfessional'
+import { RefreshControl } from 'react-native'
 
 export function UserRegisteredAsProfesisonal() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
-  const { professionalData, deleteProfessional } = useProfessional()
+  const [refreshing, setRefreshing] = useState(false)
+
+  const {
+    professionalData,
+    deleteProfessional,
+    getUserAsProfessionalFromServer,
+  } = useProfessional()
   const { colors } = useTheme()
 
   async function handleDeleteProfessional() {
@@ -48,10 +55,20 @@ export function UserRegisteredAsProfesisonal() {
     }
   }
 
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true)
+    await getUserAsProfessionalFromServer().finally(() => setRefreshing(false))
+  }, [])
+
   return (
     <VStack bg='background.500' flex='1'>
       <Header showBackButton />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
         <VStack px='5' pt='10' pb='40'>
           <ProfessionalImage
             src={professionalData.profile_picture_url}
