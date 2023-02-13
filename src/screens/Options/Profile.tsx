@@ -42,9 +42,18 @@ export function Profile() {
             <Text fontSize='lg' fontFamily='bold' color='complement.400' mr='2'>
               Email
             </Text>
-            <Text fontSize='lg' fontFamily='bold' color='complement.500'>
-              {user.email}
-            </Text>
+            <Box flex='1'>
+              <Text
+                fontSize='lg'
+                fontFamily='bold'
+                color='complement.500'
+                w='full'
+                textAlign='right'
+                isTruncated
+              >
+                {user.email}
+              </Text>
+            </Box>
           </HStack>
           <Divider my='4' />
           <HStack justifyContent='space-between' px='2'>
