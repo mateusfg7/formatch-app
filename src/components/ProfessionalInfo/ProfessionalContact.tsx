@@ -55,7 +55,7 @@ export const ProfessionalContact = ({
                 onPress={() => copyToClipboard('telefone', phone)}
               >
                 <HStack justifyContent='space-between'>
-                  <HStack alignItems='center' mr='2'>
+                  <HStack alignItems='center' mr='4'>
                     <Box mr='1'>
                       <Phone weight='duotone' />
                     </Box>
@@ -71,14 +71,14 @@ export const ProfessionalContact = ({
                 onPress={() => copyToClipboard('email', email)}
               >
                 <HStack justifyContent='space-between' alignItems='center'>
-                  <HStack alignItems='center' mr='2'>
+                  <HStack alignItems='center' mr='4'>
                     <Box mr='1'>
                       <Envelope weight='duotone' />
                     </Box>
                     <Text fontSize='lg'>Email</Text>
                   </HStack>
                   <Box flex='1' alignItems='flex-end'>
-                    <Text fontSize='lg' isTruncated>
+                    <Text fontSize='lg' w='full' textAlign='left' isTruncated>
                       {email}
                     </Text>
                   </Box>
@@ -96,7 +96,7 @@ export const ProfessionalContact = ({
                 onPress={() => copyToClipboard('whatsapp', whatsapp)}
               >
                 <HStack justifyContent='space-between' alignItems='center'>
-                  <HStack alignItems='center' mr='2'>
+                  <HStack alignItems='center' mr='4'>
                     <Box mr='1'>
                       <WhatsappLogo
                         weight='duotone'
@@ -118,7 +118,7 @@ export const ProfessionalContact = ({
                 onPress={() => copyToClipboard('instagram', instagram)}
               >
                 <HStack justifyContent='space-between' alignItems='center'>
-                  <HStack alignItems='center' mr='2'>
+                  <HStack alignItems='center' mr='4'>
                     <Box mr='1' alignItems='center'>
                       <MaskedView
                         maskElement={
