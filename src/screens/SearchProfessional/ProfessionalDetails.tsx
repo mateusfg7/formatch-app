@@ -8,6 +8,7 @@ import {
   useTheme,
 } from 'native-base'
 import { RouteProp } from '@react-navigation/native'
+import { BookmarkSimple } from 'phosphor-react-native'
 
 import { Header } from '../../components/Header'
 import {
@@ -16,6 +17,7 @@ import {
   ProfessionalBio,
   ProfessionalContact,
   ProfessionalImage,
+  RateProfessional,
 } from '../../components/ProfessionalInfo'
 import { feedbackToast } from '../../utils/feedbackToast'
 import { useEffect, useState } from 'react'
@@ -23,7 +25,6 @@ import { api } from '../../services/api'
 import { AxiosError } from 'axios'
 import { Center } from 'native-base'
 import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
-import { BookmarkSimple } from 'phosphor-react-native'
 
 interface ProfessionalData {
   name: string
@@ -37,7 +38,7 @@ interface ProfessionalData {
   services: string[]
   averageRate: number
   profile_picture_url: string
-  isRated: boolean
+  currentRate?: number
   isSaved: boolean
   code: string
 }
@@ -157,6 +158,10 @@ export function ProfessionalDetails({ route: { params } }: Props) {
                 email={professional.email}
                 whatsapp={professional.whatsapp}
                 instagram={professional.instagram}
+              />
+              <RateProfessional
+                rateValue={professional.currentRate}
+                professionalCode={professional.code}
               />
             </VStack>
           </VStack>
