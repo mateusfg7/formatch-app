@@ -38,7 +38,7 @@ jobs:
           node-version: 16.x
           cache: yarn
       - name: Setup Expo and EAS
-        uses: expo/expo-github-action@v7
+        uses: expo/expo-github-action@v8
         with:
           expo-version: 5.x
           eas-version: latest
@@ -60,7 +60,7 @@ jobs:
           node-version: 16.x
           cache: yarn
       - name: Setup Expo and EAS
-        uses: expo/expo-github-action@v7
+        uses: expo/expo-github-action@v8
         with:
           expo-version: 5.x
           eas-version: latest
