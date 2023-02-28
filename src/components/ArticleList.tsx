@@ -1,5 +1,13 @@
-import { useEffect, useState } from 'react'
-import { Box, Center, Spinner, Text, useTheme, VStack } from 'native-base'
+import { useCallback, useEffect, useState } from 'react'
+import {
+  Box,
+  Center,
+  ScrollView,
+  Spinner,
+  Text,
+  useTheme,
+  VStack,
+} from 'native-base'
 import { AxiosError } from 'axios'
 
 import { api } from '../services/api'
@@ -9,11 +17,15 @@ import { AxiosRequestErrorInfo } from './AxiosRequestErrorInfo'
 import { ArticleCard } from './ArticleCard'
 
 import FileSearchingRafiki from '../assets/file-searching-rafiki.svg'
+import { Header } from './Header'
+import { Title } from './Title'
+import { RefreshControl } from 'react-native'
 
 export function ArticleList() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<AxiosError | undefined>(undefined)
   const [articles, setArticles] = useState<ArticleData[] | undefined>()
+  const [refreshing, setRefreshing] = useState(false)
 
   const { sizes } = useTheme()
 
@@ -36,35 +48,50 @@ export function ArticleList() {
     fetchArticles()
   }, [])
 
-  return (
-    <VStack pb={sizes[22] * 2} px='5'>
-      {isLoading && (
-        <Center flex='1' py='20'>
-          <Spinner size='lg' color='complement.500' />
-        </Center>
-      )}
-      {!error &&
-        !isLoading &&
-        articles &&
-        (articles.length > 0 ? (
-          articles.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
-          ))
-        ) : (
-          <Center py='20'>
-            <Box opacity='0.7' mb='3'>
-              <FileSearchingRafiki width='230' height='177.56' />
-            </Box>
-            <Text fontSize='lg' color='complement.300' bold>
-              Sem artigos disponíveis
-            </Text>
-          </Center>
-        ))}
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true)
+    await fetchArticles().finally(() => setRefreshing(false))
+  }, [])
 
-      {!isLoading && error && <AxiosRequestErrorInfo error={error} />}
-      {!error && !isLoading && !articles && (
-        <Text>Erro ao carregar artigos.</Text>
-      )}
-    </VStack>
+  return (
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      <Header />
+      <Title text='Novidades e dicas' />
+
+      <VStack pb={sizes[22] * 2} px='5'>
+        {isLoading && (
+          <Center flex='1' py='20'>
+            <Spinner size='lg' color='complement.500' />
+          </Center>
+        )}
+        {!isLoading &&
+          articles &&
+          (articles.length > 0 ? (
+            articles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))
+          ) : (
+            <Center py='20'>
+              <Box opacity='0.7' mb='3'>
+                <FileSearchingRafiki width='230' height='177.56' />
+              </Box>
+              <Text fontSize='lg' color='complement.300' bold>
+                Sem artigos disponíveis
+              </Text>
+            </Center>
+          ))}
+
+        {!isLoading && error && !articles && (
+          <AxiosRequestErrorInfo error={error} />
+        )}
+        {!error && !isLoading && !articles && (
+          <Text>Erro ao carregar artigos.</Text>
+        )}
+      </VStack>
+    </ScrollView>
   )
 }
