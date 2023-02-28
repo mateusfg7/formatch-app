@@ -51,12 +51,22 @@ export function ArticleContent({ route }: Props) {
                 fontFamily: fonts.regular,
                 fontSize: fontSizes.xl,
                 textAlign: 'center',
-                marginBottom: sizes[24],
+                marginBottom: sizes[10],
               },
             }}
           >
             {article.content}
           </Markdown>
+          {article.sources && (
+            <Box mb='10'>
+              <Text fontSize='2xl'>Fontes</Text>
+              {article.sources.map((source) => (
+                <Text key={source} fontSize='md'>
+                  {source}
+                </Text>
+              ))}
+            </Box>
+          )}
           {article.AdMeta && (
             <Box
               borderWidth='3'
