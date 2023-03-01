@@ -10,6 +10,8 @@ import {
 import {
   BookmarksSimple,
   Briefcase,
+  Chat,
+  Envelope,
   SketchLogo,
   User,
 } from 'phosphor-react-native'
@@ -27,12 +29,18 @@ export function Options() {
 
   const { professionalData, errorOnProfessionalRequest } = useProfessional()
 
+  const Division = () => (
+    <Box px='9'>
+      <Divider />
+    </Box>
+  )
+
   const { navigate } = optionsNavigation()
   return (
-    <VStack flex={1} backgroundColor='background.500'>
+    <VStack flex={1} backgroundColor='background.500' pb='32'>
       <Header />
       <Title text='Opções' />
-      <VStack px='5' py='7'>
+      <VStack px='5' py='7' flex='1' justifyContent='space-between'>
         <Pressable
           onPress={() => navigate('options.profile')}
           _pressed={{ opacity: 0.6 }}
@@ -44,9 +52,7 @@ export function Options() {
             <Text fontSize='2xl'>Meus dados</Text>
           </HStack>
         </Pressable>
-        <Box px='9' my='7'>
-          <Divider />
-        </Box>
+        <Division />
         <Pressable
           onPress={() => feedbackToast('WARNING', 'Em desenvolvimento')}
           _pressed={{ opacity: 0.6 }}
@@ -58,9 +64,7 @@ export function Options() {
             <Text fontSize='2xl'>Assinatura premium</Text>
           </HStack>
         </Pressable>
-        <Box px='9' my='7'>
-          <Divider />
-        </Box>
+        <Division />
         <Pressable
           onPress={() => navigate('options.saved')}
           _pressed={{ opacity: 0.6 }}
@@ -74,9 +78,7 @@ export function Options() {
         </Pressable>
         {!errorOnProfessionalRequest && (
           <>
-            <Box px='9' my='7'>
-              <Divider />
-            </Box>
+            <Division />
             <Pressable
               onPress={() => navigate('options.register')}
               _pressed={{ opacity: 0.6 }}
@@ -92,6 +94,18 @@ export function Options() {
             </Pressable>
           </>
         )}
+        <Division />
+        <Pressable
+          onPress={() => navigate('options.contact')}
+          _pressed={{ opacity: 0.6 }}
+        >
+          <HStack alignItems='center'>
+            <Box mr='4'>
+              <Envelope weight='bold' size={fontSizes['2xl']} />
+            </Box>
+            <Text fontSize='2xl'>Contate-nos</Text>
+          </HStack>
+        </Pressable>
       </VStack>
     </VStack>
   )
