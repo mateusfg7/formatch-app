@@ -44,7 +44,7 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - name: Build on EAS
         run: pnpm build
   submit:
@@ -66,6 +66,6 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile 
       - name: Submit with EAS Submit
         run: pnpm submit
