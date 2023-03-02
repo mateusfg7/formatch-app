@@ -48,7 +48,7 @@ specifiers:
   react-native-actions-sheet: ^0.8.10
   react-native-markdown-display: ^7.0.0-alpha.2
   react-native-safe-area-context: 4.4.1
-  react-native-screens: ~3.18.0
+  react-native-screens: ~3.20.0
   react-native-svg: 13.4.0
   react-native-svg-transformer: ^1.0.0
   typescript: ^4.9.3
@@ -59,9 +59,9 @@ dependencies:
   '@hookform/resolvers': 2.9.10_react-hook-form@7.42.1
   '@react-native-async-storage/async-storage': 1.17.11_react-native@0.70.5
   '@react-native-masked-view/masked-view': 0.2.8_tj3nonr5gneraukzjkxpsiy7yu
-  '@react-navigation/bottom-tabs': 6.4.1_a5zg5l6apbb54b4uf24rqps7aa
+  '@react-navigation/bottom-tabs': 6.4.1_bfcgoh77urdqcjy5rwpfxb77cy
   '@react-navigation/native': 6.0.14_tj3nonr5gneraukzjkxpsiy7yu
-  '@react-navigation/native-stack': 6.9.8_a5zg5l6apbb54b4uf24rqps7aa
+  '@react-navigation/native-stack': 6.9.8_bfcgoh77urdqcjy5rwpfxb77cy
   '@types/react': 18.0.25
   '@types/react-native': 0.70.6
   axios: 1.2.6
@@ -86,7 +86,7 @@ dependencies:
   react-native-actions-sheet: 0.8.10_react-native@0.70.5
   react-native-markdown-display: 7.0.0-alpha.2_tj3nonr5gneraukzjkxpsiy7yu
   react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
-  react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
+  react-native-screens: 3.20.0_tj3nonr5gneraukzjkxpsiy7yu
   react-native-svg: 13.4.0_tj3nonr5gneraukzjkxpsiy7yu
   yup: 0.32.11
 
@@ -2898,7 +2898,7 @@ packages:
   /@react-native/polyfills/2.0.0:
     resolution: {integrity: sha512-K0aGNn1TjalKj+65D7ycc1//H9roAQ51GJVk5ZJQFb2teECGmzd86bYDC0aYdbRf7gtovescq4Zt6FR0tgXiHQ==}
 
-  /@react-navigation/bottom-tabs/6.4.1_a5zg5l6apbb54b4uf24rqps7aa:
+  /@react-navigation/bottom-tabs/6.4.1_bfcgoh77urdqcjy5rwpfxb77cy:
     resolution: {integrity: sha512-b12o0aVe+A9bUVP31kQLVcZ5l4Inm/7XhpSS5FvwhoI9L2iwofK1tt98uEQd79NIAklfui+IqRqr2X6XKkygbA==}
     peerDependencies:
       '@react-navigation/native': ^6.0.0
@@ -2913,7 +2913,7 @@ packages:
       react: 18.1.0
       react-native: 0.70.5_naleetjjl2tr2dal5iyxdlhv3y
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
-      react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
+      react-native-screens: 3.20.0_tj3nonr5gneraukzjkxpsiy7yu
       warn-once: 0.1.1
     dev: false
 
@@ -2945,7 +2945,7 @@ packages:
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
     dev: false
 
-  /@react-navigation/native-stack/6.9.8_a5zg5l6apbb54b4uf24rqps7aa:
+  /@react-navigation/native-stack/6.9.8_bfcgoh77urdqcjy5rwpfxb77cy:
     resolution: {integrity: sha512-74dje939lflsTXJQwCAdznbJ4B6V8sA5CSzuHwbiogL8B6EVXNa/qliXtB7DBAvzeyWDWT3u+gM2vOYJOeXYhA==}
     peerDependencies:
       '@react-navigation/native': ^6.0.0
@@ -2959,7 +2959,7 @@ packages:
       react: 18.1.0
       react-native: 0.70.5_naleetjjl2tr2dal5iyxdlhv3y
       react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
-      react-native-screens: 3.18.2_tj3nonr5gneraukzjkxpsiy7yu
+      react-native-screens: 3.20.0_tj3nonr5gneraukzjkxpsiy7yu
       warn-once: 0.1.1
     dev: false
 
@@ -8967,8 +8967,8 @@ packages:
       react-native: 0.70.5_naleetjjl2tr2dal5iyxdlhv3y
     dev: false
 
-  /react-native-screens/3.18.2_tj3nonr5gneraukzjkxpsiy7yu:
-    resolution: {integrity: sha512-ANUEuvMUlsYJ1QKukEhzhfrvOUO9BVH9Nzg+6eWxpn3cfD/O83yPBOF8Mx6x5H/2+sMy+VS5x/chWOOo/U7QJw==}
+  /react-native-screens/3.20.0_tj3nonr5gneraukzjkxpsiy7yu:
+    resolution: {integrity: sha512-joWUKWAVHxymP3mL9gYApFHAsbd9L6ZcmpoZa6Sl3W/82bvvNVMqcfP7MeNqVCg73qZ8yL4fW+J/syusHleUgg==}
     peerDependencies:
       react: '*'
       react-native: '*'
