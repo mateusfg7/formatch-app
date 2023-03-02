@@ -36,13 +36,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: pnpm
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
+      - name: Install PNPM
+        run: npm i -g pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build on EAS
@@ -58,13 +59,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: pnpm
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v7
         with:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
+      - name: Install PNPM
+        run: npm i -g pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile 
       - name: Submit with EAS Submit
