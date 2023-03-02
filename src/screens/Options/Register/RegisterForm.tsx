@@ -28,6 +28,9 @@ const registerSchema = yup.object().shape(
   {
     imageUri: yup.string().required('Selecione uma imagem de perfil'),
     name: yup.string().required('Informe seu nome'),
+    /* FIX: this block has a deprecated code listed on BREAKING CHANGE of yup@1.0.0-alpha.4
+     * see https://github.com/jquense/yup/blob/HEAD/CHANGELOG.md#100-alpha4-2021-12-29
+     */
     phone: yup.string().when('phone', (value) => {
       if (value) {
         return yup.string().length(15, 'Número inválido')
@@ -45,6 +48,9 @@ const registerSchema = yup.object().shape(
           .optional()
       }
     }),
+    /* FIX: this block has a deprecated code listed on BREAKING CHANGE of yup@1.0.0-alpha.4
+     * see https://github.com/jquense/yup/blob/HEAD/CHANGELOG.md#100-alpha4-2021-12-29
+     */
     email: yup.string().when('email', (value) => {
       if (value) {
         return yup.string().email('Email inválido')
@@ -68,6 +74,9 @@ const registerSchema = yup.object().shape(
       .string()
       .required('Selecione pelo menos uma área de atuação'),
     bio: yup.string().required('Conte sobre você e seus projetos'),
+    /* FIX: this block has a deprecated code listed on BREAKING CHANGE of yup@1.0.0-alpha.4
+     * see https://github.com/jquense/yup/blob/HEAD/CHANGELOG.md#100-alpha4-2021-12-29
+     */
     whatsapp: yup.string().when('whatsapp', (value) => {
       if (value) {
         return yup.string().length(15, 'Número inválido')
@@ -85,6 +94,9 @@ const registerSchema = yup.object().shape(
           .optional()
       }
     }),
+    /* FIX: this block has a deprecated code listed on BREAKING CHANGE of yup@1.0.0-alpha.4
+     * see https://github.com/jquense/yup/blob/HEAD/CHANGELOG.md#100-alpha4-2021-12-29
+     */
     instagram: yup.string().when('instagram', (value) => {
       if (value) {
         return yup.string()
