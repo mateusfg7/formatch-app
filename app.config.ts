@@ -8,6 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'formatch',
   scheme: 'formatch',
   version: packageConfig.version,
+  /* TODO: remove hermes config after bumb expo to SDK 48 (last version uses hermes by default) */
   jsEngine: 'hermes',
   orientation: 'portrait',
   icon: './assets/icon.png',
