@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
+          cache: pnpm
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v7
         with:
@@ -44,9 +44,9 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Build on EAS
-        run: yarn build
+        run: pnpm build
   submit:
     name: Submit to Google Play Store
     needs: build
@@ -58,7 +58,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: yarn
+          cache: pnpm
       - name: Setup Expo and EAS
         uses: expo/expo-github-action@v7
         with:
@@ -66,6 +66,6 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
       - name: Submit with EAS Submit
-        run: yarn submit
+        run: pnpm submit
