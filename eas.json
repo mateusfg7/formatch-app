@@ -17,6 +17,11 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "changesNotSentForReview": true,
+        "track": "internal"
+      }
+    }
   }
 }
