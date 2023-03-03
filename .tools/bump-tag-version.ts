@@ -21,14 +21,10 @@ if (lastTag) {
     log('Pushing tags')
     await simplegit.pushTags()
 
-    Deno.run({
-      cmd: ['echo', 'isNew=true', '>>', '$GITHUB_OUTPUT'],
-    })
+    Deno.env.set('IS_NEW', 'true_carai')
   } else {
     log('Last tag and package version are synchronized')
-    Deno.run({
-      cmd: ['echo', 'isNew=false', '>>', '$GITHUB_OUTPUT'],
-    })
+    Deno.env.set('IS_NEW', 'false_carai')
   }
 } else {
   log('There is no latest tag')
