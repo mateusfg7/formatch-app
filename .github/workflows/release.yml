@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-tag:
+    name: Sync Tag
+    runs-on: ubuntu-22.04
+    outputs:
+      isNew: ${{ steps.bumpTag.outputs.isNew }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1.1.1
+        with:
+          deno-version: v1.x # Run with latest stable Deno.
+
+      - name: Cache Dependencies
+        run: deno task cache
+
+      - name: Bump Tag
+        id: bumpTag
+        run: deno task bump-tag
+
+  generate-changelog:
+    name: Generate Changelog
+    runs-on: ubuntu-latest
+    needs: sync-tag
+    if: needs.sync-tag.outputs.isNew == 'true'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: BobAnkh/auto-generate-changelog@v1
+        with:
+          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          COMMIT_MESSAGE: 'docs(changelog): update release notes'
+          TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+          REGENERATE_COUNT: -1
+          REPLACE_EMPTY_RELEASE_INFO: true
