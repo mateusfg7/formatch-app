@@ -1,31 +1,10 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
-  sync_tag:
-    name: Sync Tag
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1.1.1
-        with:
-          deno-version: v1.x # Run with latest stable Deno.
-
-      - name: Cache Dependencies
-        run: deno task cache
-
-      - name: Bump Tag
-        run: deno task bump-tag
-
   build:
     name: Build App
     runs-on: ubuntu-latest
@@ -68,6 +47,6 @@ jobs:
       - name: Install PNPM
         run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile 
+        run: pnpm install --frozen-lockfile
       - name: Submit with EAS Submit
         run: pnpm submit
