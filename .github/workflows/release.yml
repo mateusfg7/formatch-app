@@ -42,6 +42,7 @@ jobs:
           fetch-depth: 0
       - uses: BobAnkh/auto-generate-changelog@v1.0.2
         with:
+          REPO_NAME: 'mateusfg7/formatch'
           ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
           COMMIT_MESSAGE: 'docs(changelog): update release notes'
           TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
