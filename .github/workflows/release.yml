@@ -27,7 +27,7 @@ jobs:
 
       - name: Bump Tag
         id: bumpTag
-        run: deno task bump-tag
+        run: deno task bump-tag && echo "isNew=TESTANDO123" >> "$GITHUB_OUTPUT"
 
   test-output:
     name: Test Output
