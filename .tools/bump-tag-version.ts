@@ -21,10 +21,11 @@ if (lastTag) {
     log('Pushing tags')
     await simplegit.pushTags()
 
-    Deno.env.set('IS_NEW', 'true_carai')
+    // Deno.env.set('IS_NEW', 'true_carai')
   } else {
     log('Last tag and package version are synchronized')
-    Deno.env.set('IS_NEW', 'false_carai')
+    // Deno.env.set('IS_NEW', 'false_carai')
+    throw new Error('Last tag and package are synchronized')
   }
 } else {
   log('There is no latest tag')
