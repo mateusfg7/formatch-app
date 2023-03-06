@@ -1,6 +1,6 @@
 {
   "name": "formatch",
-  "version": "0.1.6-alpha.7",
+  "version": "0.1.6-alpha.8",
   "versionCode": 9,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
