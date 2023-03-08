@@ -19,7 +19,7 @@ if (lastTag) {
     await simplegit.addTag(packageVersion)
 
     log('Pushing tags')
-    await simplegit.pushTags()
+    await simplegit.push('origin', packageVersion)
   } else {
     log('Last tag and package version are synchronized')
   }
