@@ -15,7 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "# | TEST 2"
-
+  ghRef:
+    name: Github REF
+    runs-on: ubuntu-latest
+    steps:
+      - name: Shows current ref
+        run: echo ${{ github.ref }}
   changelog:
     name: Changelog
     # if: startsWith(github.ref, 'refs/tags/')
