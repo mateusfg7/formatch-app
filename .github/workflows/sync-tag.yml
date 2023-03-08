@@ -20,11 +20,11 @@ jobs:
         with:
           deno-version: v1.x # Run with latest stable Deno.
 
-      - name: Cache Dependencies
-        run: deno task cache
+      # - name: Cache Dependencies
+      #   run: deno task cache
 
       - name: Bump Tag
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOWS_TOKEN }}
         # run: deno task bump-tag
-        run: echo "bump tag"
+        run: git tag 0.1.8-alpha.6 && git push origin 0.1.8-alpha.6
