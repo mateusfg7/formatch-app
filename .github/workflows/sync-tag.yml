@@ -26,4 +26,5 @@ jobs:
       - name: Bump Tag
         env:
           GITHUB_TOKEN: ${{ secrets.WORKFLOWS_TOKEN }}
-        run: deno task bump-tag
+        # run: deno task bump-tag
+        run: echo "bump tag"
