@@ -57,11 +57,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Get latest tag
-        id: previoustag
-        uses: 'WyriHaximus/github-action-get-previous-tag@v1'
+      - name: Get tag
+        id: get_tag
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
       - name: Print tag
-        run: echo ${{ steps.previoustag.outputs.tag }}
+        run: echo ${{ steps.get_tag.outputs.tag }}
       # - name: Create Release
       #   uses: mikepenz/action-gh-release@{latest} #softprops/action-gh-release
       #   with:
