@@ -9,24 +9,24 @@ jobs:
   sync-tag:
     name: Sync Tag
     runs-on: ubuntu-22.04
-    env:
-      GITHUB_TOKEN: ${{ secrets.WORKFLOWS_TOKEN }}
-      TEST_TK: ${{ secrets.TEST_TK }}
     steps:
-      - name: Print env data
-        run: echo ${{ env.GITHUB_TOKEN }}
-      - name: Print test env data
-        run: echo ${{ env.TEST_TK }}
-      # - name: Checkout Repo
-      #   uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0
+      - name: Setup GIT
+        run: |
+          git config --global user.name "Mateus Felipe Gonçalves"
+          git config --global user.email "mateusfelipefg77@gmail.com"
 
-      # - name: Setup Deno
-      #   uses: denoland/setup-deno@v1.1.1
-      #   with:
-      #     deno-version: v1.x # Run with latest stable Deno.
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-      # - name: Bump Tag
-      #   run: |
-      #     deno task bump-tag
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1.1.1
+        with:
+          deno-version: v1.x # Run with latest stable Deno.
+
+      - name: Bump Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOWS_TOKEN }}
+        run: |
+          deno task bump-tag
