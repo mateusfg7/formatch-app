@@ -3,7 +3,6 @@
   "extends": ["config:base"],
   "commitBodyTable": true,
   "branchPrefix": "deps/",
-  "bumpVersion": "patch",
   "labels": ["dependencies"],
   "semanticCommits": "enabled",
   "packageRules": [
