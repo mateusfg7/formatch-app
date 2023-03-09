@@ -11,9 +11,12 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       GITHUB_TOKEN: ${{ secrets.WORKFLOWS_TOKEN }}
+      TEST_TK: ${{ secrets.TEST_TK }}
     steps:
       - name: Print env data
         run: echo ${{ env.GITHUB_TOKEN }}
+      - name: Print test env data
+        run: echo ${{ env.TEST_TK }}
       # - name: Checkout Repo
       #   uses: actions/checkout@v3
       #   with:
