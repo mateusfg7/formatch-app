@@ -48,6 +48,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+      - name: Setup git
+        run: |
+          git config --global user.name "Mateus Felipe Gonçalves"
+          git config --global user.email "mateusfelipefg77@gmail.com"
       - name: Update CHANGELOG.md
         run: |
           npx conventional-changelog-cli -p conventionalcommits -i CHANGELOG.md -s -r 0 &&\
