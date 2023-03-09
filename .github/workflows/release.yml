@@ -65,7 +65,7 @@ jobs:
         run: git tag
       - name: Get tag
         id: get_tag
-        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+        run: echo "tag=$(git describe --tags --abbrev=0 --always)" >> $GITHUB_OUTPUT
       - name: Print tag
         run: echo ${{ steps.get_tag.outputs.tag }}
       # - name: Create Release
