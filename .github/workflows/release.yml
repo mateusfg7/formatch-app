@@ -57,15 +57,17 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: List tags
         run: git tag
-      - name: Pull tags
-        run: git pull --tags
-      - name: List tags again
-        run: git tag
+      # - name: Pull tags
+      #   run: git pull --tags
+      # - name: List tags again
+      #   run: git tag
       - name: Get tag
         id: get_tag
-        run: echo "tag=$(git describe --tags --abbrev=0 --always)" >> $GITHUB_OUTPUT
+        run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
       - name: Print tag
         run: echo ${{ steps.get_tag.outputs.tag }}
       # - name: Create Release
