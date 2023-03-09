@@ -61,7 +61,10 @@ jobs:
 
       - name: Build Changelog
         id: github_release
-        run: echo "changelog=$(npx conventional-changelog-cli --preset conventionalcommits -r 2)" >> $GITHUB_OUTPUT
+        run: |
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$(npx conventional-changelog-cli --preset conventionalcommits -r 2)" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
   release:
     name: Release
