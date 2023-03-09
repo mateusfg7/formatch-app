@@ -50,13 +50,13 @@ jobs:
           node-version: 16.x
       - name: Setup git
         run: |
-          git config --global user.name "Mateus Felipe Gonçalves"
-          git config --global user.email "mateusfelipefg77@gmail.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Update CHANGELOG.md
         run: |
           npx conventional-changelog-cli -p conventionalcommits -i CHANGELOG.md -s -r 0 &&\
             git add CHANGELOG.md &&\
-            git commit -m 'chore(docs): update changelog' &&\
+            git commit -m "docs(CHANGELOG): v$(git describe --tags --abbrev=0)" &&\
             git push
 
       - name: Build Changelog
