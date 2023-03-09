@@ -48,7 +48,7 @@ jobs:
           node-version: 16.x
       - name: Build Changelog
         id: github_release
-        run: echo "changelog=$(npx conventional-changelog-cli --preset conventionalcommits)" >> $GITHUB_OUTPUT
+        run: echo "changelog=$(npx conventional-changelog-cli --preset conventionalcommits -r 2)" >> $GITHUB_OUTPUT
 
   release:
     name: Release
