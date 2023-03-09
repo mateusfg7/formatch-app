@@ -22,6 +22,7 @@ if (lastTag) {
     await simplegit.push('origin', packageVersion)
   } else {
     log('Last tag and package version are synchronized')
+    throw new Error()
   }
 } else {
   log('There is no latest tag')
