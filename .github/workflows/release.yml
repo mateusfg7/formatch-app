@@ -1,6 +1,6 @@
 name: 'Release'
 
-on: create
+on: push
 
 jobs:
   test1:
