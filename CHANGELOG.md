@@ -1,3 +1,35 @@
+### [0.1.8-alpha.14](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.13...0.1.8-alpha.14) (2023-03-09)
+
+### [0.1.8-alpha.13](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.12...0.1.8-alpha.13) (2023-03-09)
+
+### [0.1.8-alpha.12](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.11...0.1.8-alpha.12) (2023-03-09)
+
+### [0.1.8-alpha.11](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.10...0.1.8-alpha.11) (2023-03-09)
+
+### [0.1.8-alpha.10](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.9...0.1.8-alpha.10) (2023-03-09)
+
+### [0.1.8-alpha.9](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.8...0.1.8-alpha.9) (2023-03-09)
+
+### [0.1.8-alpha.8](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.7...0.1.8-alpha.8) (2023-03-09)
+
+### [0.1.8-alpha.7](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.6...0.1.8-alpha.7) (2023-03-08)
+
+### [0.1.8-alpha.6](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.5...0.1.8-alpha.6) (2023-03-08)
+
+### [0.1.8-alpha.5](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.4...0.1.8-alpha.5) (2023-03-08)
+
+### [0.1.8-alpha.4](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.3...0.1.8-alpha.4) (2023-03-08)
+
+### [0.1.8-alpha.3](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.2...0.1.8-alpha.3) (2023-03-08)
+
+### [0.1.8-alpha.2](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.1...0.1.8-alpha.2) (2023-03-08)
+
+### [0.1.8-alpha.1](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.0...0.1.8-alpha.1) (2023-03-08)
+
+### [0.1.8-alpha.0](https://github.com/mateusfg7/formatch/compare/0.1.7...0.1.8-alpha.0) (2023-03-08)
+
+### [0.1.7](https://github.com/mateusfg7/formatch/compare/0.1.6-alpha.11...0.1.7) (2023-03-08)
+
 ### [0.1.6-alpha.11](https://github.com/mateusfg7/formatch/compare/0.1.6-alpha.10...0.1.6-alpha.11) (2023-03-08)
 
 ### [0.1.6-alpha.10](https://github.com/mateusfg7/formatch/compare/0.1.6-alpha.9...0.1.6-alpha.10) (2023-03-08)
