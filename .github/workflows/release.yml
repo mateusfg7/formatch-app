@@ -63,7 +63,7 @@ jobs:
         id: get_tag
         run: echo "tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
       - name: Create Release
-        uses: mikepenz/action-gh-release@{latest} #softprops/action-gh-release
+        uses: mikepenz/action-gh-release@v1 #softprops/action-gh-release
         with:
           body: ${{ needs.changelog.outputs.changelog }}
           tag_name: ${{ steps.get_tag.outputs.tag }}
