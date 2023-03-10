@@ -1,7 +1,8 @@
 <div align="center">
 
-# <img src=".github/docs/logotipo.svg" width="600">
-
+<!-- # <img src=".github/docs/logotipo.svg" width="600"> -->
+<img src=".github/docs/banner.svg" width="600">
+<br />
 Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor.
 </div>
 
@@ -29,5 +30,3 @@ Este projeto esta sendo desenvolvido para o **Projeto de Inovação** do curso *
 
 A interface esta sendo desenvolvida usando o Figma:
 https://www.figma.com/file/NkIXXfyFD3qOzn3R4Btdbj/Formatch?node-id=4%3A3&t=QShQuWiOeJ3ijLqU-1
-
-
