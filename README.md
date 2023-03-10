@@ -1,12 +1,17 @@
 <div align="center">
 
 <!-- # <img src=".github/docs/logotipo.svg" width="600"> -->
-<img src=".github/docs/banner.svg" width="600">
+<img src=".github/docs/banner.svg" width="800">
+<br />
 <br />
 Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor.
-</div>
 
 <br />
+
+<a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch" target="_blank">
+  <img src="https://img.shields.io/badge/Formatch-000C7C?&label=Play%20Store&labelColor=222&style=for-the-badge&logo=Google%20Play&logoColor=FFF" alt="Playstore" />
+</div>
+</a>
 <br />
 <br />
 <br />
