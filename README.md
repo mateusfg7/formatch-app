@@ -1,11 +1,13 @@
 <div align="center">
 
 <!-- # <img src=".github/docs/logotipo.svg" width="600"> -->
-<img src=".github/docs/banner.svg" width="800">
+<img src=".github/docs/banner.svg" width="100%">
 <br />
 <br />
+
 Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor.
 
+<br />
 <br />
 
 <a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch" target="_blank">
