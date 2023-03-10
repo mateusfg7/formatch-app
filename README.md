@@ -11,7 +11,7 @@ Conecta você a um profissional da área de construção civil, e ainda te mant�
 <br />
 
 <a href="https://play.google.com/store/apps/details?id=com.mateusfg7.formatch" target="_blank">
-  <img src="https://img.shields.io/badge/Formatch-000C7C?&label=Play%20Store&labelColor=222&style=for-the-badge&logo=Google%20Play&logoColor=FFF" alt="Playstore" />
+  <img src="https://img.shields.io/badge/Formatch-000C7C?&label=Play%20Store&labelColor=222&style=for-the-badge&logo=Google%20Play&logoColor=FFF" alt="Playstore" width="250"/>
 </div>
 </a>
 <br />
