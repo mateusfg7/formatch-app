@@ -54,7 +54,7 @@ export function Options() {
         </Pressable>
         <Division />
         <Pressable
-          onPress={() => feedbackToast('WARNING', 'Em desenvolvimento')}
+          onPress={() => navigate('options.premium')}
           _pressed={{ opacity: 0.6 }}
         >
           <HStack alignItems='center'>
