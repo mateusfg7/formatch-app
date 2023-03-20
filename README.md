@@ -40,9 +40,6 @@ https://www.figma.com/file/NkIXXfyFD3qOzn3R4Btdbj/Formatch?node-id=4%3A3&t=QShQu
 
 <br/>
 <br/>
-
----
-
 <br/>
 <br/>
 
