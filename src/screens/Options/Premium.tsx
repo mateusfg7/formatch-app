@@ -17,6 +17,10 @@ export function Premium() {
 
   const { sizes } = useTheme()
 
+  async function subscribe() {
+    console.log('Subscribe button taped')
+  }
+
   return (
     <VStack flex={1} backgroundColor='background.500'>
       <Header showBackButton />
@@ -83,11 +87,7 @@ export function Premium() {
               </HStack>
             </VStack>
 
-            <Pressable
-              w='2/3'
-              onPress={() => console.log('Pressed')}
-              _pressed={{ opacity: 0.7 }}
-            >
+            <Pressable w='2/3' onPress={subscribe} _pressed={{ opacity: 0.7 }}>
               <Box
                 borderRadius='2xl'
                 justifyContent='center'
