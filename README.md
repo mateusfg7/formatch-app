@@ -37,3 +37,15 @@ Este projeto esta sendo desenvolvido para o **Projeto de Inovação** do curso *
 
 A interface esta sendo desenvolvida usando o Figma:
 https://www.figma.com/file/NkIXXfyFD3qOzn3R4Btdbj/Formatch?node-id=4%3A3&t=QShQuWiOeJ3ijLqU-1
+
+<br/>
+<br/>
+
+---
+
+<br/>
+<br/>
+
+<div align="center">
+<a href="https://notbyai.fyi"><img src="written-by-human-not-by-ai-white.svg" alt="written By human, not by AI"></a>
+</div>
