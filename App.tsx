@@ -5,8 +5,6 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
-import * as WebBrowser from 'expo-web-browser'
-
 import { Routes } from './src/routes'
 import { AuthContextProvider } from './src/contexts/AuthContext'
 import { ProfessionalContextProvider } from './src/contexts/AuthenticatedProfessionalContext'
@@ -19,8 +17,6 @@ const nativeBaseConfig = {
     'linear-gradient': require('expo-linear-gradient').LinearGradient,
   },
 }
-
-WebBrowser.maybeCompleteAuthSession()
 
 export default function App() {
   const [fontsLoaded] = useFonts({
