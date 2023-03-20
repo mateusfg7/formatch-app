@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 import * as AuthSession from 'expo-auth-session'
 import * as Google from 'expo-auth-session/providers/google'
+import * as WebBrowser from 'expo-web-browser'
 import constants from 'expo-constants'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
@@ -8,6 +9,8 @@ import { api } from '../services/api'
 import { ANDROID_CLIENT_ID, EXPO_CLIENT_ID } from '../constants'
 import { useProfessional } from '../hooks/useProfessional'
 import { feedbackToast } from '../utils/feedbackToast'
+
+WebBrowser.maybeCompleteAuthSession()
 
 interface UserProps {
   name: string
@@ -37,13 +40,13 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
   const { removeProfessionalData, getUserAsProfessional } = useProfessional()
 
   const [_request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId: EXPO_CLIENT_ID,
+    // expoClientId: EXPO_CLIENT_ID,
     androidClientId: ANDROID_CLIENT_ID,
-    redirectUri:
-      constants.appOwnership === 'expo'
-        ? AuthSession.makeRedirectUri({ useProxy: true })
-        : 'com.mateusfg7.formatch:/',
-    scopes: ['profile', 'email'],
+    // redirectUri:
+    //   constants.appOwnership === 'expo'
+    //     ? AuthSession.makeRedirectUri({ useProxy: true })
+    //     : 'com.mateusfg7.formatch:/',
+    // scopes: ['profile', 'email'],
   })
 
   const { getItem, setItem, removeItem } = useAsyncStorage('@Formatch_user')
