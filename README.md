@@ -47,5 +47,5 @@ https://www.figma.com/file/NkIXXfyFD3qOzn3R4Btdbj/Formatch?node-id=4%3A3&t=QShQu
 <br/>
 
 <div align="center">
-<a href="https://notbyai.fyi"><img src="written-by-human-not-by-ai-white.svg" alt="written By human, not by AI"></a>
+<a href="https://notbyai.fyi"><img src=".github/docs/Produced-By-Human-Not-By-AI-Badge-black.svg" alt="written By human, not by AI"></a>
 </div>
