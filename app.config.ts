@@ -7,6 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: 'Formatch',
   slug: 'formatch',
   scheme: 'formatch',
+  platforms: ['android'],
   version: packageConfig.version,
   /* TODO: remove hermes config after bumb expo to SDK 48 (last version uses hermes by default) */
   jsEngine: 'hermes',
