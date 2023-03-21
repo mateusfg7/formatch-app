@@ -22,10 +22,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     fallbackToCacheTimeout: 0,
   },
   assetBundlePatterns: ['**/*'],
-  ios: {
-    supportsTablet: true,
-    bundleIdentifier: 'com.mateusfg7.formatch',
-  },
   android: {
     versionCode: packageConfig.versionCode,
     adaptiveIcon: {
@@ -33,9 +29,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#FA5D14',
     },
     package: 'com.mateusfg7.formatch',
-  },
-  web: {
-    favicon: './assets/favicon.png',
   },
   extra: {
     eas: {
