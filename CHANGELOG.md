@@ -1,3 +1,26 @@
+## [0.2.0](https://github.com/mateusfg7/formatch/compare/0.1.9...0.2.0) (2023-03-21)
+
+
+### Features
+
+* **adsense:** create AdBanner component ([5a4cfce](https://github.com/mateusfg7/formatch/commit/5a4cfce1711c3061df7036de328f4d536668c0bc))
+* **auth:** remove `maybeCompleteAuth` method from `App.tsx` ([95075b6](https://github.com/mateusfg7/formatch/commit/95075b613dcac7aba562c22d065bec2bbfbf6819))
+* **auth:** update AuthContext ([4d44834](https://github.com/mateusfg7/formatch/commit/4d448349e1ff61d8678153fa91831aa63eb08a1c))
+* **log:** add a function that show a log every time that user try to subscribe ([8cd1b11](https://github.com/mateusfg7/formatch/commit/8cd1b119f47aa0dd753c8c3adffa17e335d99d0c))
+* **premium:** create `togglePremium` function on Auth Context ([812cedf](https://github.com/mateusfg7/formatch/commit/812cedf0d98b6eafa9db853bf3e6e985501e1ede))
+* **routes:** create Premium screen ([2904839](https://github.com/mateusfg7/formatch/commit/2904839bda228dde2f9cadfdf0fd4c12adeffdd7))
+* **ui/ux:** add option to Premium screen on Options screen ([03b5868](https://github.com/mateusfg7/formatch/commit/03b5868e113f9bb126eb70442ee3fe2b062308d2))
+* **ui/ux:** update space between items on Options screen ([645d1ee](https://github.com/mateusfg7/formatch/commit/645d1ee0b2746eb61ef1404c7ee82788276353d1))
+* **utils:** add "PREMIUM" type on `feedbackToast` ([cd1f164](https://github.com/mateusfg7/formatch/commit/cd1f164172f637085ec3c1b9ccab3c295e3eba24))
+* **ux/ui:** update Premium screen ([3700a21](https://github.com/mateusfg7/formatch/commit/3700a214c931086e68b3acef8f576de320954d8b))
+
+
+### Bug Fixes
+
+* **deps:** downgrade react-native@0.71.3 and react-native-svg@13.4.0 ([19ddd61](https://github.com/mateusfg7/formatch/commit/19ddd6188a655dfe1c7287204f7ff074a1a998f2))
+* **deps:** update dependency react-native to v0.71.4 ([a52be9a](https://github.com/mateusfg7/formatch/commit/a52be9ab9573447777d71a4e4fa2644e911a5ae2))
+* **deps:** update dependency react-native-svg to v13.8.0 ([96203a9](https://github.com/mateusfg7/formatch/commit/96203a923dacf3c7606a4204bee30580894b8a67))
+
 ### [0.1.9](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.18...0.1.9) (2023-03-09)
 
 ### [0.1.8-alpha.18](https://github.com/mateusfg7/formatch/compare/0.1.8-alpha.17...0.1.8-alpha.18) (2023-03-09)
