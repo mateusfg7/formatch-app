@@ -25,6 +25,7 @@ export interface AuthContextDataProps {
   signIn: () => void
   signOut: () => void
   checkUserOnStorage: () => Promise<void>
+  togglePremium: () => Promise<boolean>
 }
 
 interface AuthProviderProps {
@@ -117,6 +118,35 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function togglePremium() {
+    const response = await api.put<{
+      message: string
+      subscribe: boolean
+    }>('/user/premium')
+
+    console.log(response.data.message)
+
+    const updatedData = {
+      ...user,
+      subscribe: response.data.subscribe,
+    }
+    setUser(updatedData)
+
+    const userOnStorage = await getItem()
+    if (userOnStorage) {
+      const parsedUserInfo = JSON.parse(userOnStorage)
+
+      await setItem(
+        JSON.stringify({
+          ...parsedUserInfo,
+          user: updatedData,
+        })
+      )
+    }
+
+    return updatedData.subscribe
+  }
+
   useEffect(() => {
     if (response?.type === 'success' && response?.authentication?.accessToken) {
       signInWithGoogle(response.authentication.accessToken)
@@ -125,7 +155,14 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isUserLoading, signIn, signOut, checkUserOnStorage }}
+      value={{
+        user,
+        isUserLoading,
+        signIn,
+        signOut,
+        checkUserOnStorage,
+        togglePremium,
+      }}
     >
       {children}
     </AuthContext.Provider>
