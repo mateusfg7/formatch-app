@@ -1,7 +1,7 @@
 import { Box, HStack, Text, Toast } from 'native-base'
-import { Info, Warning, XCircle } from 'phosphor-react-native'
+import { Info, Star, Warning, XCircle } from 'phosphor-react-native'
 
-type ToastType = 'ERROR' | 'WARNING' | 'INFO'
+type ToastType = 'ERROR' | 'WARNING' | 'INFO' | 'PREMIUM'
 
 type Data = {
   [key in ToastType]: {
@@ -24,6 +24,10 @@ export function feedbackToast(type: ToastType, message: string) {
       mainColor: '#7c2d12',
       bgColor: '#ffedd5',
     },
+    PREMIUM: {
+      mainColor: '#9D9700',
+      bgColor: '#FFFEEB',
+    },
   }
 
   Toast.show({
@@ -42,6 +46,9 @@ export function feedbackToast(type: ToastType, message: string) {
           {type === 'INFO' && <Info color={data[type].mainColor} />}
           {type === 'WARNING' && <Warning color={data[type].mainColor} />}
           {type === 'ERROR' && <XCircle color={data[type].mainColor} />}
+          {type === 'PREMIUM' && (
+            <Star color={data[type].mainColor} weight='fill' />
+          )}
 
           <Box maxW='full' p='1'>
             <Text
