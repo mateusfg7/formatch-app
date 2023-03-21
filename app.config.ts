@@ -23,6 +23,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     fallbackToCacheTimeout: 0,
   },
   assetBundlePatterns: ['**/*'],
+  ios: {
+    bundleIdentifier: 'com.mateusfg7.formatch',
+  },
   android: {
     versionCode: packageConfig.versionCode,
     adaptiveIcon: {
