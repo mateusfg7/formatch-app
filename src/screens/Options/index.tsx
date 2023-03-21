@@ -40,7 +40,7 @@ export function Options() {
     <VStack flex={1} backgroundColor='background.500' pb='32'>
       <Header />
       <Title text='Opções' />
-      <VStack px='5' py='7' flex='1' justifyContent='space-between'>
+      <VStack px='5' py='7' flex='1' space='6'>
         <Pressable
           onPress={() => navigate('options.profile')}
           _pressed={{ opacity: 0.6 }}
