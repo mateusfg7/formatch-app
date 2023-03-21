@@ -10,7 +10,6 @@ import {
 import {
   BookmarksSimple,
   Briefcase,
-  Chat,
   Envelope,
   SketchLogo,
   User,
@@ -19,7 +18,6 @@ import {
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
 
-import { feedbackToast } from '../../utils/feedbackToast'
 import { optionsNavigation } from '../../utils/typedNavigation'
 
 import { useProfessional } from '../../hooks/useProfessional'
