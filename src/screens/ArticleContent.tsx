@@ -6,6 +6,7 @@ import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native'
 
 import { Header } from '../components/Header'
 import { Title } from '../components/Title'
+import { AdBanner } from '../components/AdBanner'
 
 interface Props {
   route: RouteProp<{ params: { article: ArticleData } }, 'params'>
@@ -44,6 +45,7 @@ export function ArticleContent({ route }: Props) {
             borderColor='complement.500'
             mb='3'
           />
+          <AdBanner />
           <Markdown
             style={{
               body: {

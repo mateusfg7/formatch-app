@@ -20,6 +20,7 @@ import FileSearchingRafiki from '../assets/file-searching-rafiki.svg'
 import { Header } from './Header'
 import { Title } from './Title'
 import { RefreshControl } from 'react-native'
+import { AdBanner } from './AdBanner'
 
 export function ArticleList() {
   const [isLoading, setIsLoading] = useState(true)
@@ -68,22 +69,26 @@ export function ArticleList() {
             <Spinner size='lg' color='complement.500' />
           </Center>
         )}
-        {!isLoading &&
-          articles &&
-          (articles.length > 0 ? (
-            articles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
-            ))
-          ) : (
-            <Center py='20'>
-              <Box opacity='0.7' mb='3'>
-                <FileSearchingRafiki width='230' height='177.56' />
-              </Box>
-              <Text fontSize='lg' color='complement.300' bold>
-                Sem artigos disponíveis
-              </Text>
-            </Center>
-          ))}
+        {!isLoading && articles && (
+          <>
+            <AdBanner />
+
+            {articles.length > 0 ? (
+              articles.map((article) => (
+                <ArticleCard key={article.slug} article={article} />
+              ))
+            ) : (
+              <Center py='20'>
+                <Box opacity='0.7' mb='3'>
+                  <FileSearchingRafiki width='230' height='177.56' />
+                </Box>
+                <Text fontSize='lg' color='complement.300' bold>
+                  Sem artigos disponíveis
+                </Text>
+              </Center>
+            )}
+          </>
+        )}
 
         {!isLoading && error && !articles && (
           <AxiosRequestErrorInfo error={error} />

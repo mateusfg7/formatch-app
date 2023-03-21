@@ -25,6 +25,7 @@ import { api } from '../../services/api'
 import { AxiosError } from 'axios'
 import { Center } from 'native-base'
 import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
+import { AdBanner } from '../../components/AdBanner'
 
 interface ProfessionalData {
   name: string
@@ -145,6 +146,7 @@ export function ProfessionalDetails({ route: { params } }: Props) {
       {!isLoading && !error && professional && (
         <ScrollView showsVerticalScrollIndicator={false}>
           <VStack px='5' pt='10' pb='40'>
+            <AdBanner />
             <ProfessionalImage
               src={professional.profile_picture_url}
               alt={professional.name}

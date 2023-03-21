@@ -9,6 +9,7 @@ import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
 import { SelectState, State } from '../../components/SelectState'
 import { SelectCity, City } from '../../components/SelectCity'
+import { AdBanner } from '../../components/AdBanner'
 
 export function SelectLocation() {
   const [selectedState, setSelectedState] = useState<State>()
@@ -78,6 +79,7 @@ export function SelectLocation() {
             </Pressable>
           )}
         </Box>
+        <AdBanner />
       </VStack>
     </VStack>
   )

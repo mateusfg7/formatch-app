@@ -28,6 +28,7 @@ import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
+import { AdBanner } from '../../components/AdBanner'
 import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
 
 import HouseSearch from '../../assets/house-search.svg'
@@ -108,102 +109,106 @@ export function ProfessionalList() {
           </HStack>
         </Center>
       )}
-      {!isLoading &&
-        !error &&
-        professionalList &&
-        (professionalList.length == 0 ? (
-          <Center mb='24' px='5' pt='5'>
-            <HouseSearch width='250' height='250' />
-            <Text fontSize='xl' textAlign='center'>
-              Nenhum profissional cadastrado
-            </Text>
-          </Center>
-        ) : (
-          <ScrollView>
-            <VStack pb='40'>
-              {professionalList.map((professional) => (
-                <Pressable
-                  key={professional.name}
-                  onPress={() =>
-                    navigate('professional.details', {
-                      code: professional.code,
-                    })
-                  }
-                >
-                  <HStack
-                    bg='white'
-                    alignItems='center'
-                    shadow='2'
-                    rounded='3xl'
-                    my='2 '
-                    mx='5'
-                    overflow='hidden'
+      {!isLoading && !error && professionalList && (
+        <>
+          <Box mx='5'>
+            <AdBanner />
+          </Box>
+          {professionalList.length == 0 ? (
+            <Center mb='24' px='5' pt='5'>
+              <HouseSearch width='250' height='250' />
+              <Text fontSize='xl' textAlign='center'>
+                Nenhum profissional cadastrado
+              </Text>
+            </Center>
+          ) : (
+            <ScrollView>
+              <VStack pb='40'>
+                {professionalList.map((professional) => (
+                  <Pressable
+                    key={professional.name}
+                    onPress={() =>
+                      navigate('professional.details', {
+                        code: professional.code,
+                      })
+                    }
                   >
-                    <Center size='110'>
-                      <Image
-                        source={{ uri: professional.profile_picture_url }}
-                        alt='Picture'
-                        size='110'
-                      />
-                    </Center>
-                    <VStack
-                      flex='1'
-                      alignItems='flex-start'
-                      justifyContent='space-around'
-                      p='2'
-                      space='4'
+                    <HStack
+                      bg='white'
+                      alignItems='center'
+                      shadow='2'
+                      rounded='3xl'
+                      my='2 '
+                      mx='5'
+                      overflow='hidden'
                     >
-                      <Box w='full'>
-                        <Text
-                          fontSize='lg'
-                          color='complement.500'
-                          fontFamily='bold'
-                          isTruncated
-                        >
-                          {professional.name}
-                        </Text>
-                      </Box>
-                      <HStack alignItems='center' space='4'>
-                        <HStack alignItems='center' space='2'>
-                          <Star
-                            weight='duotone'
-                            color={
-                              professional.averageRate >= 4
-                                ? colors.secondary[500]
-                                : colors.complement[500]
-                            }
-                          />
+                      <Center size='110'>
+                        <Image
+                          source={{ uri: professional.profile_picture_url }}
+                          alt='Picture'
+                          size='110'
+                        />
+                      </Center>
+                      <VStack
+                        flex='1'
+                        alignItems='flex-start'
+                        justifyContent='space-around'
+                        p='2'
+                        space='4'
+                      >
+                        <Box w='full'>
                           <Text
                             fontSize='lg'
+                            color='complement.500'
                             fontFamily='bold'
-                            color={
-                              professional.averageRate >= 4
-                                ? 'secondary.500'
-                                : 'complement.500'
-                            }
+                            isTruncated
                           >
-                            {professional.averageRate}
+                            {professional.name}
                           </Text>
+                        </Box>
+                        <HStack alignItems='center' space='3'>
+                          <HStack alignItems='center' space='1'>
+                            <Star
+                              weight='duotone'
+                              color={
+                                professional.averageRate >= 4
+                                  ? colors.secondary[500]
+                                  : colors.complement[500]
+                              }
+                            />
+                            <Text
+                              fontSize='lg'
+                              fontFamily='bold'
+                              color={
+                                professional.averageRate >= 4
+                                  ? 'secondary.500'
+                                  : 'complement.500'
+                              }
+                            >
+                              {professional.averageRate}
+                            </Text>
+                          </HStack>
+                          <Box w='0.5' h='3/4' bg='complement.200' />
+                          <HStack alignItems='center' space='1'>
+                            {professional.whatsapp && (
+                              <WhatsappLogo weight='light' />
+                            )}
+                            {professional.instagram && (
+                              <InstagramLogo weight='light' />
+                            )}
+                            {professional.phone && <Phone weight='light' />}
+                            {professional.email && <Envelope weight='light' />}
+                          </HStack>
                         </HStack>
-                        <Box w='0.5' h='3/4' bg='complement.200' />
-                        <HStack alignItems='center' space='1'>
-                          {professional.whatsapp && (
-                            <WhatsappLogo weight='light' />
-                          )}
-                          {professional.instagram && (
-                            <InstagramLogo weight='light' />
-                          )}
-                          {professional.phone && <Phone weight='light' />}
-                          {professional.email && <Envelope weight='light' />}
-                        </HStack>
-                      </HStack>
-                    </VStack>
-                  </HStack>
-                </Pressable>
-              ))}
-            </VStack>
-          </ScrollView>
-        ))}
+                      </VStack>
+                    </HStack>
+                  </Pressable>
+                ))}
+              </VStack>
+            </ScrollView>
+          )}
+        </>
+      )}
     </VStack>
   )
 }

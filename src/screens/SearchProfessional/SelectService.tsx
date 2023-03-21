@@ -18,6 +18,7 @@ import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
+import { AdBanner } from '../../components/AdBanner'
 
 export function SelectService() {
   const { fontSizes, sizes, colors } = useTheme()
@@ -44,6 +45,9 @@ export function SelectService() {
       <Title text='Qual tipo de profissional você procura?' />
       <ScrollView>
         <VStack pb='40'>
+          <Box mx='5'>
+            <AdBanner />
+          </Box>
           {occupationList.map(({ Icon, occupation }) => (
             <Pressable
               key={occupation}
@@ -55,7 +59,7 @@ export function SelectService() {
                   alignItems='center'
                   shadow='2'
                   rounded='3xl'
-                  my='2 '
+                  my='2'
                   mx='5'
                 >
                   <Center
