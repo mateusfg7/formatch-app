@@ -1,7 +1,7 @@
 {
   "name": "formatch",
-  "version": "0.1.9",
-  "versionCode": 9,
+  "version": "0.2.0",
+  "versionCode": 10,
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
