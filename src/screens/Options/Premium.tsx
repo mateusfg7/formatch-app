@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import {
   Box,
   Divider,
   HStack,
   Pressable,
+  Spinner,
   Text,
   VStack,
   useTheme,
@@ -10,15 +12,32 @@ import {
 
 import { Header } from '../../components/Header'
 import { useAuth } from '../../hooks/useAuth'
-import { SignOut, SketchLogo, Star } from 'phosphor-react-native'
+import { SketchLogo, Star } from 'phosphor-react-native'
+import { feedbackToast } from '../../utils/feedbackToast'
 
 export function Premium() {
-  const { user, signOut } = useAuth()
+  const [isUserSubscribing, setIsUserSubscribing] = useState(false)
+
+  const { user, togglePremium } = useAuth()
 
   const { sizes } = useTheme()
 
   async function subscribe() {
-    console.log('Subscribe button taped')
+    setIsUserSubscribing(true)
+    await togglePremium()
+      .then((isPremiumActivated) => {
+        if (isPremiumActivated) {
+          feedbackToast('PREMIUM', 'Assinatura premium ativada!')
+        } else {
+          feedbackToast('INFO', 'Assinatura premium desativada!')
+        }
+      })
+      .catch((error) => {
+        feedbackToast('ERROR', 'Erro ao criar assinatura Premium')
+        feedbackToast('ERROR', String(error))
+        console.log(error)
+      })
+      .finally(() => setIsUserSubscribing(false))
   }
 
   return (
@@ -43,11 +62,17 @@ export function Premium() {
             <Box mb='3'>
               <SketchLogo weight='duotone' color='#9D9700' size={sizes['16']} />
             </Box>
-            <Text fontSize='3xl' textAlign='center'>
-              Aproveite o máximo{'\n'}
-              que nosso app pode{'\n'}
-              oferecer ;)
-            </Text>
+            {!user.subscribe ? (
+              <Text fontSize='3xl' textAlign='center'>
+                Aproveite o máximo{'\n'}
+                que nosso app pode{'\n'}
+                oferecer ;)
+              </Text>
+            ) : (
+              <Text fontSize='3xl' textAlign='center'>
+                A assinatura premium esta <Text bold>ativada</Text>! :)
+              </Text>
+            )}
           </Box>
           <Divider />
           <VStack
@@ -92,16 +117,32 @@ export function Premium() {
                 borderRadius='2xl'
                 justifyContent='center'
                 alignItems='center'
-                p='3'
+                // p='3'
+                h='20'
                 w='full'
                 borderWidth='2'
-                borderColor='#9D9700'
-                backgroundColor='rgba(157,151,0,0.1)'
+                borderColor={!user.subscribe ? '#9D9700' : 'danger.700'}
+                backgroundColor={
+                  !user.subscribe ? 'rgba(157,151,0,0.1)' : 'danger.50'
+                }
               >
-                <Text color='#9D9700' textAlign='center' fontSize='xl'>
-                  Por apenas{'\n'}
-                  <Text bold>R$10,00</Text> / mês
-                </Text>
+                {isUserSubscribing ? (
+                  <Box>
+                    <Spinner
+                      color={!user.subscribe ? '#9D9700' : 'danger.700'}
+                      size='lg'
+                    />
+                  </Box>
+                ) : !user.subscribe ? (
+                  <Text color='#9D9700' textAlign='center' fontSize='xl'>
+                    Por apenas{'\n'}
+                    <Text bold>R$10,00</Text> / mês
+                  </Text>
+                ) : (
+                  <Text color='danger.700' textAlign='center' fontSize='lg'>
+                    Desativar assinatura premium
+                  </Text>
+                )}
               </Box>
             </Pressable>
           </VStack>
