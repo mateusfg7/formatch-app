@@ -26,7 +26,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>formatch</string>
-          <string>com.mateusfg7.formatch</string>
+          <string>com.mateusfg7.formatch.dev</string>
         </array>
       </dict>
       <dict>

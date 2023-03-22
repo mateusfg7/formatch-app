@@ -1,4 +1,4 @@
-package com.mateusfg7.formatch;
+package com.mateusfg7.formatch.dev;
 
 import android.os.Build;
 import android.os.Bundle;
