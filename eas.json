@@ -19,7 +19,6 @@
   "submit": {
     "production": {
       "android": {
-        "changesNotSentForReview": true,
         "track": "internal"
       }
     }
