@@ -24,7 +24,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
-    bundleIdentifier: 'com.mateusfg7.formatch',
+    bundleIdentifier:
+      process.env.BUILD_ENV === 'development'
+        ? 'com.mateusfg7.formatch.dev'
+        : 'com.mateusfg7.formatch',
   },
   android: {
     versionCode: packageConfig.versionCode,
@@ -32,7 +35,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#FA5D14',
     },
-    package: 'com.mateusfg7.formatch',
+    package:
+      process.env.BUILD_ENV === 'development'
+        ? 'com.mateusfg7.formatch.dev'
+        : 'com.mateusfg7.formatch',
   },
   extra: {
     eas: {
