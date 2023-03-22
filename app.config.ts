@@ -25,7 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   assetBundlePatterns: ['**/*'],
   ios: {
     bundleIdentifier:
-      process.env.BUILD_ENV === 'development'
+      process.env.BUILD_ENV != 'production'
         ? 'com.mateusfg7.formatch.dev'
         : 'com.mateusfg7.formatch',
   },
@@ -36,7 +36,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#FA5D14',
     },
     package:
-      process.env.BUILD_ENV === 'development'
+      process.env.BUILD_ENV != 'production'
         ? 'com.mateusfg7.formatch.dev'
         : 'com.mateusfg7.formatch',
   },
