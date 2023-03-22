@@ -5,12 +5,14 @@ import packageConfig from './package.json'
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'Formatch',
+  description:
+    'Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor. ',
   slug: 'formatch',
   scheme: 'formatch',
+  privacy: 'public',
+  githubUrl: 'https://github.com/mateusfg7/formatch',
   platforms: ['android'],
   version: packageConfig.version,
-  /* TODO: remove hermes config after bumb expo to SDK 48 (last version uses hermes by default) */
-  jsEngine: 'hermes',
   orientation: 'portrait',
   icon: './assets/icon.png',
   userInterfaceStyle: 'light',
@@ -31,6 +33,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     versionCode: packageConfig.versionCode,
+    playStoreUrl:
+      'https://play.google.com/store/apps/details?id=com.mateusfg7.formatch',
+    jsEngine: 'hermes',
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#FA5D14',
