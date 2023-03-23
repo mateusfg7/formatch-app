@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Pressable, Text, VStack, useTheme } from 'native-base'
 import { ArrowRight } from 'phosphor-react-native'
 
@@ -10,6 +10,7 @@ import { Title } from '../../components/Title'
 import { SelectState, State } from '../../components/SelectState'
 import { SelectCity, City } from '../../components/SelectCity'
 import { AdBanner } from '../../components/AdBanner'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
 export function SelectLocation() {
   const [selectedState, setSelectedState] = useState<State>()
@@ -21,9 +22,18 @@ export function SelectLocation() {
 
   const navigator = professionalNavigation()
 
+  const stateOnStorage = useAsyncStorage('@Formatch:location:state')
+  const cityOnStorage = useAsyncStorage('@Formatch:location:city')
+
   function handleSelectedState(state: State) {
     setSelectedState(state)
+    stateOnStorage.setItem(JSON.stringify(state))
+
     setSelectedCity(undefined)
+  }
+  function handleSelectedCity(city: City) {
+    setSelectedCity(city)
+    cityOnStorage.setItem(JSON.stringify(city))
   }
 
   function handleSubmitButton() {
@@ -32,6 +42,18 @@ export function SelectLocation() {
 
     navigator.navigate('professional.service')
   }
+
+  async function fetchLocationFromStorage() {
+    const state = await stateOnStorage.getItem()
+    if (state) setSelectedState(JSON.parse(state))
+
+    const city = await cityOnStorage.getItem()
+    if (city) setSelectedCity(JSON.parse(city))
+  }
+
+  useEffect(() => {
+    fetchLocationFromStorage()
+  }, [])
 
   return (
     <VStack flex={1} backgroundColor='background.500'>
@@ -50,7 +72,7 @@ export function SelectLocation() {
           {selectedState && (
             <SelectCity
               selected={selectedCity}
-              setSelected={setSelectedCity}
+              setSelected={handleSelectedCity}
               stateUf={selectedState.sigla}
               mb={selectedCity && '5'}
             />
@@ -60,8 +82,7 @@ export function SelectLocation() {
               flexDirection='row'
               alignItems='center'
               justifyContent='space-between'
-              px='3'
-              py='2'
+              p='3'
               borderWidth='1'
               borderColor='secondary.600'
               borderRadius='2xl'
@@ -73,7 +94,7 @@ export function SelectLocation() {
             >
               <Box w='8' h='8' />
               <Text fontFamily='bold' fontSize='md' color='secondary.600'>
-                CATEGORIAS
+                SERVIÇOS
               </Text>
               <ArrowRight size={sizes[8]} color={colors.secondary[600]} />
             </Pressable>
