@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { Box, HStack, Image, Pressable, Text } from 'native-base'
 import { ImageBackground } from 'react-native'
+
 import { feedNavigation } from '../utils/typedNavigation'
 
 interface Props {
@@ -7,6 +9,8 @@ interface Props {
 }
 
 export function ArticleCard({ article }: Props) {
+  const [isLoadingImage, setIsLoadingImage] = useState(true)
+
   const { navigate } = feedNavigation()
 
   function handleClick() {
@@ -22,60 +26,75 @@ export function ArticleCard({ article }: Props) {
             overflow='hidden'
             mb='5'
             shadow={isPressed ? '1' : '9'}
+            bg='background.500'
           >
             <ImageBackground
-              source={{ uri: article.banner_url }}
+              source={require('../assets/tools-pattern.jpg')}
               resizeMode='cover'
             >
-              <Box
-                px='3'
-                pt='16'
-                justifyContent='flex-end'
-                bg={
-                  isPressed
-                    ? {
-                        linearGradient: {
-                          colors: ['transparent', 'complement.500'],
-                          start: [0, 0],
-                          end: [0, 1.3],
-                        },
-                      }
-                    : {
-                        linearGradient: {
-                          colors: ['transparent', 'complement.500'],
-                          start: [0, 0.3],
-                          end: [0, 1.2],
-                        },
-                      }
-                }
+              <ImageBackground
+                source={{ uri: article.banner_url }}
+                onLoad={() => setIsLoadingImage(false)}
+                resizeMode='cover'
               >
-                <HStack
-                  py='2'
-                  alignItems='center'
-                  justifyContent='space-between'
+                <Box
+                  px='3'
+                  pt='16'
+                  justifyContent='flex-end'
+                  bg={
+                    isPressed
+                      ? {
+                          linearGradient: {
+                            colors: ['transparent', 'complement.500'],
+                            start: [0, 0],
+                            end: [0, 1.3],
+                          },
+                        }
+                      : isLoadingImage
+                      ? {
+                          linearGradient: {
+                            colors: ['transparent', 'complement.500'],
+                            start: [0, 0.1],
+                            end: [0, 1.3],
+                          },
+                        }
+                      : {
+                          linearGradient: {
+                            colors: ['transparent', 'complement.500'],
+                            start: [0, 0.3],
+                            end: [0, 1.2],
+                          },
+                        }
+                  }
                 >
-                  <Text
-                    fontFamily={article.AdMeta ? 'bold' : 'regular'}
-                    fontSize='xl'
-                    color='background.200'
-                    flex={1}
+                  <HStack
+                    py='2'
+                    alignItems='center'
+                    justifyContent='space-between'
                   >
-                    {article.title}
-                  </Text>
-                  {article.AdMeta && (
-                    <Image
-                      source={{
-                        uri: article.AdMeta.logo_url,
-                      }}
-                      alt=''
-                      size='md'
-                      h='20'
-                      w='24'
-                      resizeMode='contain'
-                    />
-                  )}
-                </HStack>
-              </Box>
+                    <Text
+                      fontFamily={article.AdMeta ? 'bold' : 'regular'}
+                      fontSize='xl'
+                      color='background.200'
+                      flex={1}
+                    >
+                      {article.title}
+                    </Text>
+                    {article.AdMeta && (
+                      <Image
+                        source={{
+                          uri: article.AdMeta.logo_url,
+                        }}
+                        alt=''
+                        size='md'
+                        h='20'
+                        w='24'
+                        resizeMode='contain'
+                      />
+                    )}
+                  </HStack>
+                </Box>
+              </ImageBackground>
             </ImageBackground>
           </Box>
         )
