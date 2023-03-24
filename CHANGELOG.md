@@ -1,3 +1,14 @@
+### [0.2.1](https://github.com/mateusfg7/formatch/compare/0.2.0...0.2.1) (2023-03-24)
+
+
+### Features
+
+* **constants:** add tester constant as a list of tester emails ([ddffe5d](https://github.com/mateusfg7/formatch/commit/ddffe5d5f776ad7f7852cdbb7f9c990e08383027))
+* **env:** use google client id based on build env ([2fd51a7](https://github.com/mateusfg7/formatch/commit/2fd51a79db98137b711e9caf2d5c419cb0becb65))
+* **ux/ui:** add alt image while article card banner is loading ([517efe6](https://github.com/mateusfg7/formatch/commit/517efe635b8057db4ea7f5a57a29bbe500a00260))
+* **ux/ui:** create "Test laboratory" screen ([cf5eba3](https://github.com/mateusfg7/formatch/commit/cf5eba32fa9de8dbcc534716f2d0f034cc09f0e8))
+* **ux:** persist slected state and city on professional search page ([8a6835c](https://github.com/mateusfg7/formatch/commit/8a6835c0f113f85c99025b1185acf145244b8220))
+
 ## [0.2.0](https://github.com/mateusfg7/formatch/compare/0.1.9...0.2.0) (2023-03-21)
 
 
