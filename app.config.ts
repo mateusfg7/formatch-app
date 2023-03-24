@@ -2,9 +2,11 @@ import { ExpoConfig, ConfigContext } from 'expo/config'
 
 import packageConfig from './package.json'
 
+const isProd = process.env.BUILD_ENV === 'production'
+
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: process.env.BUILD_ENV === 'production' ? 'Formatch' : 'Formatch DEV',
+  name: isProd ? 'Formatch' : 'Formatch DEV',
   description:
     'Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor. ',
   slug: 'formatch',
@@ -26,24 +28,25 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
-    bundleIdentifier:
-      process.env.BUILD_ENV != 'production'
-        ? 'com.mateusfg7.formatch.dev'
-        : 'com.mateusfg7.formatch',
+    bundleIdentifier: isProd
+      ? 'com.mateusfg7.formatch'
+      : 'com.mateusfg7.formatch.dev',
   },
   android: {
     versionCode: packageConfig.versionCode,
     playStoreUrl:
       'https://play.google.com/store/apps/details?id=com.mateusfg7.formatch',
     jsEngine: 'hermes',
-    adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#FA5D14',
-    },
-    package:
-      process.env.BUILD_ENV != 'production'
-        ? 'com.mateusfg7.formatch.dev'
-        : 'com.mateusfg7.formatch',
+    adaptiveIcon: isProd
+      ? {
+          foregroundImage: './assets/adaptive-icon.png',
+          backgroundColor: '#FA5D14',
+        }
+      : {
+          foregroundImage: './assets/adaptive-icon-dev.png',
+          backgroundColor: '#000C7C',
+        },
+    package: isProd ? 'com.mateusfg7.formatch' : 'com.mateusfg7.formatch.dev',
   },
   extra: {
     eas: {
