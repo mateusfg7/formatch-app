@@ -4,7 +4,7 @@ import packageConfig from './package.json'
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'Formatch',
+  name: process.env.BUILD_ENV === 'production' ? 'Formatch' : 'Formatch DEV',
   description:
     'Conecta você a um profissional da área de construção civil, e ainda te mantém informado sobre novidades do setor. ',
   slug: 'formatch',
