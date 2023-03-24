@@ -7,6 +7,7 @@ import { SavedProfessionals } from '../screens/Options/SavedProfessionals'
 import { ProfessionalDetails } from '../screens/Options/SavedProfessionals/ProfessionalDetails'
 import { Register } from '../screens/Options/Register'
 import { Contact } from '../screens/Options/Contact'
+import { DevData } from '../screens/Options/DevData'
 
 export type OptionsNavigatorParamList = {
   'options.home': {}
@@ -16,6 +17,7 @@ export type OptionsNavigatorParamList = {
   'options.saved.details': { code: string }
   'options.register': {}
   'options.contact': {}
+  'options.devdata': {}
 }
 
 const { Navigator, Screen } =
@@ -31,6 +33,7 @@ export function OptionsRoute() {
       <Screen name='options.saved.details' component={ProfessionalDetails} />
       <Screen name='options.register' component={Register} />
       <Screen name='options.contact' component={Contact} />
+      <Screen name='options.devdata' component={DevData} />
     </Navigator>
   )
 }

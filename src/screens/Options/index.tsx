@@ -10,6 +10,7 @@ import {
 import {
   BookmarksSimple,
   Briefcase,
+  Code,
   Envelope,
   SketchLogo,
   User,
@@ -21,11 +22,16 @@ import { Title } from '../../components/Title'
 import { optionsNavigation } from '../../utils/typedNavigation'
 
 import { useProfessional } from '../../hooks/useProfessional'
+import { useAuth } from '../../hooks/useAuth'
+import { TESTERS } from '../../constants'
 
 export function Options() {
   const { fontSizes } = useTheme()
 
+  const { user } = useAuth()
   const { professionalData, errorOnProfessionalRequest } = useProfessional()
+
+  const isTester = TESTERS.includes(user.email)
 
   const Division = () => (
     <Box px='9'>
@@ -38,7 +44,7 @@ export function Options() {
     <VStack flex={1} backgroundColor='background.500' pb='32'>
       <Header />
       <Title text='Opções' />
-      <VStack px='5' py='7' flex='1' space='6'>
+      <VStack px='5' py='7' flex='1' space={isTester ? '5' : '6'}>
         <Pressable
           onPress={() => navigate('options.profile')}
           _pressed={{ opacity: 0.6 }}
@@ -104,6 +110,22 @@ export function Options() {
             <Text fontSize='2xl'>Contate-nos</Text>
           </HStack>
         </Pressable>
+        {isTester && (
+          <>
+            <Division />
+            <Pressable
+              onPress={() => navigate('options.devdata')}
+              _pressed={{ opacity: 0.6 }}
+            >
+              <HStack alignItems='center'>
+                <Box mr='4'>
+                  <Code weight='bold' size={fontSizes['2xl']} />
+                </Box>
+                <Text fontSize='2xl'>Test laboratory</Text>
+              </HStack>
+            </Pressable>
+          </>
+        )}
       </VStack>
     </VStack>
   )
