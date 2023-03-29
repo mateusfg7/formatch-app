@@ -4,6 +4,7 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
+import 'expo-dev-client'
 
 import { Routes } from './src/routes'
 import { AuthContextProvider } from './src/contexts/AuthContext'
