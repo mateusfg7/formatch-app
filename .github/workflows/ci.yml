@@ -101,12 +101,10 @@ jobs:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
-      - name: Install PNPM
-        run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install
       - name: Build on EAS
-        run: pnpm build
+        run: yarn build
 
   submit:
     name: Submit to Google Play Store
@@ -125,9 +123,7 @@ jobs:
           expo-version: 5.x
           eas-version: latest
           token: ${{ secrets.EXPO_ACCESS_TOKEN }}
-      - name: Install PNPM
-        run: npm i -g pnpm
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install
       - name: Submit with EAS Submit
-        run: pnpm submit
+        run: yarn submit
