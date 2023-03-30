@@ -1,22 +1,21 @@
-interface AuthenticatedProfessionalData {
-  name: string
+interface ProfessionalData {
   code: string
-  profile_picture_url: string
-  state_uf: string
-  city: string
-  biography: string
-  services: string[]
-  savedCount: number
-  averageRate: number
-  email: string | null
-  phone: string | null
+  name: string
   whatsapp: string | null
   instagram: string | null
+  phone: string | null
+  email: string | null
+  biography: string
+  services: string[]
+  averageRate: number
+  state_uf: string
+  city: string
+  profile_picture_url: string
 }
 
 interface FormDataProps {
-  imageUri: string
   name: string
+  imageUri: string
   phone: string
   email: string
   stateUf: string
@@ -25,20 +24,4 @@ interface FormDataProps {
   bio: string
   whatsapp: string
   instagram: string
-}
-
-interface ProfessionalData {
-  averageRate: number
-  biography: string
-  city: string
-  code: string
-  createdAt: string
-  email: string | null
-  instagram: string | null
-  name: string
-  phone: string | null
-  profile_picture_url: string
-  services: string[]
-  state_uf: string
-  whatsapp: string | null
 }

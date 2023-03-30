@@ -4,7 +4,9 @@ import { feedbackToast } from '../utils/feedbackToast'
 import { AxiosError } from 'axios'
 
 export interface ProfessionalContextProps {
-  professionalData: AuthenticatedProfessionalData
+  professionalData: ProfessionalData & {
+    savedCount: number
+  }
   getUserAsProfessional: () => Promise<void>
   createProfessional(
     data: FormDataProps,
