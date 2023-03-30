@@ -17,28 +17,25 @@ import {
   WhatsappLogo,
 } from 'phosphor-react-native'
 
-import { professionalNavigation } from '../utils/typedNavigation'
 import { LoadingSkeleton } from './LoadingSkeleton'
 
 interface Props {
   professional: ProfessionalData
+  onPress: () => void
+  hideRating?: boolean
 }
 
-export function ProfessionalCard({ professional }: Props) {
+export function ProfessionalCard({
+  professional,
+  onPress,
+  hideRating = false,
+}: Props) {
   const [isImageLoaded, setIsImageLoaded] = useState(false)
 
   const { colors } = useTheme()
-  const { navigate } = professionalNavigation()
 
   return (
-    <Pressable
-      key={professional.name}
-      onPress={() =>
-        navigate('professional.details', {
-          code: professional.code,
-        })
-      }
-    >
+    <Pressable key={professional.name} onPress={onPress}>
       <HStack
         bg='white'
         alignItems='center'
@@ -76,28 +73,32 @@ export function ProfessionalCard({ professional }: Props) {
             </Text>
           </Box>
           <HStack alignItems='center' space='3'>
-            <HStack alignItems='center' space='1'>
-              <Star
-                weight='duotone'
-                color={
-                  professional.averageRate >= 4
-                    ? colors.secondary[500]
-                    : colors.complement[500]
-                }
-              />
-              <Text
-                fontSize='lg'
-                fontFamily='bold'
-                color={
-                  professional.averageRate >= 4
-                    ? 'secondary.500'
-                    : 'complement.500'
-                }
-              >
-                {professional.averageRate}
-              </Text>
-            </HStack>
-            <Box w='0.5' h='3/4' bg='complement.200' />
+            {!hideRating && (
+              <>
+                <HStack alignItems='center' space='1'>
+                  <Star
+                    weight='duotone'
+                    color={
+                      professional.averageRate >= 4
+                        ? colors.secondary[500]
+                        : colors.complement[500]
+                    }
+                  />
+                  <Text
+                    fontSize='lg'
+                    fontFamily='bold'
+                    color={
+                      professional.averageRate >= 4
+                        ? 'secondary.500'
+                        : 'complement.500'
+                    }
+                  >
+                    {professional.averageRate}
+                  </Text>
+                </HStack>
+                <Box w='0.5' h='3/4' bg='complement.200' />
+              </>
+            )}
             <HStack alignItems='center' space='1'>
               {professional.whatsapp && <WhatsappLogo weight='light' />}
               {professional.instagram && <InstagramLogo weight='light' />}

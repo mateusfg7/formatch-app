@@ -13,15 +13,16 @@ import { AxiosError } from 'axios'
 import { api } from '../../services/api'
 
 import { feedbackToast } from '../../utils/feedbackToast'
+import { professionalNavigation } from '../../utils/typedNavigation'
 import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
 import { AdBanner } from '../../components/AdBanner'
 import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
+import { ProfessionalCard } from '../../components/ProfessionalCard'
 
 import HouseSearch from '../../assets/house-search.svg'
-import { ProfessionalCard } from '../../components/ProfessionalCard'
 
 export function ProfessionalList() {
   const [isLoading, setIsLoading] = useState(true)
@@ -31,6 +32,8 @@ export function ProfessionalList() {
   >(undefined)
 
   const { data } = useSearchProfessional()
+
+  const { navigate } = professionalNavigation()
 
   async function fetchProfessionalList() {
     await api
@@ -99,6 +102,11 @@ export function ProfessionalList() {
                   <ProfessionalCard
                     key={professional.code}
                     professional={professional}
+                    onPress={() =>
+                      navigate('professional.details', {
+                        code: professional.code,
+                      })
+                    }
                   />
                 ))}
               </VStack>
