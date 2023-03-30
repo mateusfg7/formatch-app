@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Box,
   Divider,
@@ -8,13 +9,15 @@ import {
   VStack,
   useTheme,
 } from 'native-base'
+import { SignOut } from 'phosphor-react-native'
 
 import { Header } from '../../components/Header'
 import { Title } from '../../components/Title'
+import { LoadingSkeleton } from '../../components/LoadingSkeleton'
 import { useAuth } from '../../hooks/useAuth'
-import { SignOut } from 'phosphor-react-native'
 
 export function Profile() {
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
   const { user, signOut } = useAuth()
 
   const { fontSizes } = useTheme()
@@ -25,14 +28,17 @@ export function Profile() {
       <Title text='Meus dados' />
       <VStack px='5' py='6' alignItems='center'>
         <VStack alignItems='center' mb='16'>
-          <Image
-            source={{ uri: user.avatar_url }}
-            alt='Foto do usuário'
-            h='32'
-            w='32'
-            borderRadius='full'
-            mb='4'
-          />
+          <Box mb='4' h='32' w='32' borderRadius='full' overflow='hidden'>
+            <LoadingSkeleton isContentVisible={isImageLoaded}>
+              <Image
+                source={{ uri: user.avatar_url }}
+                onLoadEnd={() => setIsImageLoaded(true)}
+                alt='Foto do usuário'
+                h='full'
+                w='full'
+              />
+            </LoadingSkeleton>
+          </Box>
           <Text fontFamily='bold' fontSize='xl'>
             {user.name}
           </Text>
