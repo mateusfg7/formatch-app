@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Box,
   Text,
@@ -17,14 +18,16 @@ import {
 } from 'phosphor-react-native'
 
 import { professionalNavigation } from '../utils/typedNavigation'
+import { LoadingSkeleton } from './LoadingSkeleton'
 
 interface Props {
   professional: ProfessionalData
 }
 
 export function ProfessionalCard({ professional }: Props) {
-  const { colors } = useTheme()
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
 
+  const { colors } = useTheme()
   const { navigate } = professionalNavigation()
 
   return (
@@ -46,11 +49,14 @@ export function ProfessionalCard({ professional }: Props) {
         overflow='hidden'
       >
         <Center size='110'>
-          <Image
-            source={{ uri: professional.profile_picture_url }}
-            alt='Picture'
-            size='110'
-          />
+          <LoadingSkeleton isContentVisible={isImageLoaded}>
+            <Image
+              source={{ uri: professional.profile_picture_url }}
+              alt='Picture'
+              size='full'
+              onLoadEnd={() => setIsImageLoaded(true)}
+            />
+          </LoadingSkeleton>
         </Center>
         <VStack
           flex='1'
