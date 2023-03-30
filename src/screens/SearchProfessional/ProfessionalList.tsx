@@ -5,25 +5,14 @@ import {
   HStack,
   Text,
   Box,
-  useTheme,
   Center,
-  Pressable,
-  Image,
   Spinner,
 } from 'native-base'
-import {
-  Envelope,
-  InstagramLogo,
-  Phone,
-  Star,
-  WhatsappLogo,
-} from 'phosphor-react-native'
 import { AxiosError } from 'axios'
 
 import { api } from '../../services/api'
 
 import { feedbackToast } from '../../utils/feedbackToast'
-import { professionalNavigation } from '../../utils/typedNavigation'
 import { useSearchProfessional } from '../../hooks/useSearchProfessional'
 
 import { Header } from '../../components/Header'
@@ -32,22 +21,7 @@ import { AdBanner } from '../../components/AdBanner'
 import { AxiosRequestErrorInfo } from '../../components/AxiosRequestErrorInfo'
 
 import HouseSearch from '../../assets/house-search.svg'
-
-interface ProfessionalData {
-  averageRate: number
-  biography: string
-  city: string
-  code: string
-  createdAt: string
-  email: string | null
-  instagram: string | null
-  name: string
-  phone: string | null
-  profile_picture_url: string
-  services: string[]
-  state_uf: string
-  whatsapp: string | null
-}
+import { ProfessionalCard } from '../../components/ProfessionalCard'
 
 export function ProfessionalList() {
   const [isLoading, setIsLoading] = useState(true)
@@ -57,9 +31,6 @@ export function ProfessionalList() {
   >(undefined)
 
   const { data } = useSearchProfessional()
-  const { navigate } = professionalNavigation()
-
-  const { colors } = useTheme()
 
   async function fetchProfessionalList() {
     await api
@@ -125,84 +96,10 @@ export function ProfessionalList() {
             <ScrollView>
               <VStack pb='40'>
                 {professionalList.map((professional) => (
-                  <Pressable
-                    key={professional.name}
-                    onPress={() =>
-                      navigate('professional.details', {
-                        code: professional.code,
-                      })
-                    }
-                  >
-                    <HStack
-                      bg='white'
-                      alignItems='center'
-                      shadow='2'
-                      rounded='3xl'
-                      my='2 '
-                      mx='5'
-                      overflow='hidden'
-                    >
-                      <Center size='110'>
-                        <Image
-                          source={{ uri: professional.profile_picture_url }}
-                          alt='Picture'
-                          size='110'
-                        />
-                      </Center>
-                      <VStack
-                        flex='1'
-                        alignItems='flex-start'
-                        justifyContent='space-around'
-                        p='2'
-                        space='4'
-                      >
-                        <Box w='full'>
-                          <Text
-                            fontSize='lg'
-                            color='complement.500'
-                            fontFamily='bold'
-                            isTruncated
-                          >
-                            {professional.name}
-                          </Text>
-                        </Box>
-                        <HStack alignItems='center' space='3'>
-                          <HStack alignItems='center' space='1'>
-                            <Star
-                              weight='duotone'
-                              color={
-                                professional.averageRate >= 4
-                                  ? colors.secondary[500]
-                                  : colors.complement[500]
-                              }
-                            />
-                            <Text
-                              fontSize='lg'
-                              fontFamily='bold'
-                              color={
-                                professional.averageRate >= 4
-                                  ? 'secondary.500'
-                                  : 'complement.500'
-                              }
-                            >
-                              {professional.averageRate}
-                            </Text>
-                          </HStack>
-                          <Box w='0.5' h='3/4' bg='complement.200' />
-                          <HStack alignItems='center' space='1'>
-                            {professional.whatsapp && (
-                              <WhatsappLogo weight='light' />
-                            )}
-                            {professional.instagram && (
-                              <InstagramLogo weight='light' />
-                            )}
-                            {professional.phone && <Phone weight='light' />}
-                            {professional.email && <Envelope weight='light' />}
-                          </HStack>
-                        </HStack>
-                      </VStack>
-                    </HStack>
-                  </Pressable>
+                  <ProfessionalCard
+                    key={professional.code}
+                    professional={professional}
+                  />
                 ))}
               </VStack>
             </ScrollView>

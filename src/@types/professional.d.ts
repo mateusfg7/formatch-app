@@ -26,3 +26,19 @@ interface FormDataProps {
   whatsapp: string
   instagram: string
 }
+
+interface ProfessionalData {
+  averageRate: number
+  biography: string
+  city: string
+  code: string
+  createdAt: string
+  email: string | null
+  instagram: string | null
+  name: string
+  phone: string | null
+  profile_picture_url: string
+  services: string[]
+  state_uf: string
+  whatsapp: string | null
+}
