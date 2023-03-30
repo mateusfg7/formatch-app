@@ -1,3 +1,16 @@
+## [0.3.0](https://github.com/mateusfg7/formatch/compare/0.2.1...0.3.0) (2023-03-30)
+
+
+### Features
+
+* add `onPress` and `hideRating` props to ProfessionalCard ([e1045ce](https://github.com/mateusfg7/formatch/commit/e1045cee8a3ad84c9e6b4243ec1440b73a379828))
+* **app:** import expo-dev-client to better error handling ([9ff2601](https://github.com/mateusfg7/formatch/commit/9ff26012f7610fd16219c403ee7d65b56c9ba833))
+* **types:** create global ProfessionalData interface ([52d344b](https://github.com/mateusfg7/formatch/commit/52d344bfe05fe91724279458d1375e6f7ff21b6d))
+* **ui/ux:** add loading skeleton to professional picture ([cb1dc2e](https://github.com/mateusfg7/formatch/commit/cb1dc2edd6ffffa00adc96087b54939246417501))
+* **ui/ux:** add loading skeleton to professional picture on professional details screen ([ae9bb40](https://github.com/mateusfg7/formatch/commit/ae9bb40f152156ecfee0abe106e8b33678b37c8b))
+* **ui/ux:** add loading skeleton to user profile photo ([2e593c7](https://github.com/mateusfg7/formatch/commit/2e593c73e6b32b92ce7b22f6dd618838c7b212b5))
+* **ui/ux:** create loading skeleton component ([67026b7](https://github.com/mateusfg7/formatch/commit/67026b78cc11984daa086885452724e40a855596))
+
 ### [0.2.1](https://github.com/mateusfg7/formatch/compare/0.2.0...0.2.1) (2023-03-24)
 
 
