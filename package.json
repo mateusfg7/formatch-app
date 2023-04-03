@@ -49,7 +49,7 @@
     "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.3",
-    "react-native": "0.71.4",
+    "react-native": "0.71.6",
     "react-native-actions-sheet": "^0.8.21",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-markdown-display": "7.0.0-alpha.2",
