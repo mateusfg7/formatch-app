@@ -5,6 +5,12 @@ const ANDROID_CLIENT_ID =
 
 const API_URL = process.env.API_URL
 
-const TESTERS = ['mateusfelipefg77@gmail.com', 'tuliomtm.mtm@gmail.com']
+const TESTERS = [
+  'mateusfelipefg77@gmail.com',
+  'tuliomtm.mtm@gmail.com',
+  'mariafernandamarques34567@gmail.com',
+  'moniquelivya822@gmail.com',
+  'gabrielferrarist@gmail.com',
+]
 
 export { ANDROID_CLIENT_ID, API_URL, TESTERS }
